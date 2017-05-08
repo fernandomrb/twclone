@@ -1,0 +1,60 @@
+!!! 5
+%html
+  %head
+    %title twittah
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    - flash.each do |key, value|
+      %div{:class => "alert alert-#{key}"}= value
+
+    %nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => "#"} twittah
+          
+        / Collect the nav links, forms, and other content for toggling
+        #navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li.active
+              = link_to "Home", root_path
+            %li
+              = link_to "Notifications", "#"
+            %li
+              = link_to "Messages", "#"
+        
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              - if user_signed_in?
+                = link_to "Sign out", destroy_user_session_path, method: :delete
+              - else
+                = link_to "Sign in", new_user_session_path
+            %li.dropdown
+              %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                Dropdown
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} Separated link
+          %form.navbar-form.navbar-right
+            .form-group
+              %input.form-control{:placeholder => "Search on twittah", :type => "text"}
+
+    .container
+      = yield
+

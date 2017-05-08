@@ -1,2 +1,38 @@
-.jumbotron
-	%p= tweet.body
+%li{class:"tweet"}
+	.container-fluid
+		.header.row
+			.user-avatar.col-xs-2
+				%img{ src: "http://vignette1.wikia.nocookie.net/cutemariobro/images/5/59/Person-placeholder.jpg" }
+			.text.col-xs-10
+				.username
+					= link_to "#" do
+						%span tweet.user.email
+						%span @username
+				.date
+					%span few seconds ago
+		
+		.body
+			%p= tweet.body
+		.footer
+			.actions
+				.reply
+					%button{ class: "btn btn-default reply"} 
+						.icon-container
+							%i r
+						.text-container
+							.action-count
+								%span 2
+				.retweet
+					%button{ class: "btn btn-default rt"} 
+						.icon-container
+							%i rt
+						.text-container
+							.action-count
+								%span 3
+				.like
+					%button{ class: "btn btn-default like"} 
+						.icon-container
+							%i <3
+						.text-container
+							.action-count
+								%span 3

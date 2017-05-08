@@ -1,3 +1,44 @@
 // Place all the styles related to the tweets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tweets {
+	margin: 0;
+}
+.tweet {
+	list-style-type: none;
+	background: #fff;
+	border: 1px solid #eee;
+	max-width: 700px;
+	overflow: hidden;
+	padding: 1em;
+	position: relative;
+	.container-fluid {
+		margin-left: 50px;
+		.user-avatar {
+			position: absolute;
+			left: 15px;
+			width: 48px;
+			height: 48px;
+			padding: 0;
+			img {
+				border-radius: 10%;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.text {
+			.username, .date {
+				display: inline-block;
+			}
+		}
+		.footer {
+			.actions {
+				div {
+					display: inline-block;
+				}
+			}
+		}
+	}
+
+}

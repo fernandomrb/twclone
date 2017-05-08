@@ -1,5 +1,8 @@
 class TweetsController < ApplicationController
+
   before_action :set_tweet, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user, except: [:index, :show]
+  
   def index
     @tweets = Tweet.all.order("created_at DESC")
   end
@@ -9,9 +12,9 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = current_user.tweets.new(tweet_params)
     if @tweet.save
-      redirect_to @tweet, notice: "Your tweet has been sent."
+      redirect_to @tweet, success: "Your tweet has been sent."
     else
       render :new
     end
@@ -24,7 +27,7 @@ class TweetsController < ApplicationController
 
   def update
     if @tweet.update(tweet_params)
-      redirect_to @tweet, notice: "Your tweet has been updated."
+      redirect_to @tweet, success: "Your tweet has been updated."
     else
       render :edit
     end
