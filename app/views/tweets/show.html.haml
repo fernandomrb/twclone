@@ -1,0 +1,5 @@
+.jumbotron
+	%p= @tweet.body
+	= link_to "back", root_path
+	= link_to "edit", edit_tweet_path(@tweet)
+	= link_to "delete", @tweet, method: :delete, data: { confirm: "Are you sure?" }
