@@ -14,11 +14,89 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "tweets";
+@import "font-awesome";
+@import "registration";
 
 body {
 	background-color: #F5F8FA;
 	padding-top: 50px;
 }
-.navbar-form {
-	padding: 0;
+a {
+	color: black;
+	&:hover {
+		color: black;
+		cursor: pointer;
+	}
+}
+.navbar {
+	background-color: #fff;
+	.navbar-header {
+		h1 {
+			margin: 0;
+		}
+		.navbar-brand {
+			margin: 0;
+			i {
+				font-size: 24px;
+				color: #1DA1F2
+			}
+		}
+	}
+	.navbar-collapse {
+		margin-top: 50px;
+	}
+	.navbar-form {
+		padding: 0;
+		input[type="text"] {
+			width: 100%;
+		}
+	}
+}
+
+.panel-margin {
+	margin: 0 4em;
+}
+.checkbox input[type="checkbox"] {
+	margin-left: 0;
+}
+.panel {
+	margin-top: 2em;
+	h2 {
+		font-size: 24px;
+		margin-bottom: 1em;
+	}
+	form {
+		.form-control {
+			max-width: 100%;
+		}
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.panel {
+		max-width: 70%;
+		margin: 2em auto;
+		form {
+			.form-control {
+				max-width: 50%;
+			}
+		}
+	}
+}
+@media screen and (min-width: 768px) {
+	.navbar {
+		.navbar-header {
+			position: absolute;
+			top: -2px;
+			left: 49%;
+		}
+
+		.navbar-collapse {
+			margin-top: 0;
+		}
+		.navbar-form {
+			padding: 0;
+			width: 150px;
+		}
+	}
 }

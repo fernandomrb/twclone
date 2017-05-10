@@ -3,42 +3,127 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .tweets {
-	margin: 0;
+	margin: 0 auto;
+	padding: 0;
 }
 .tweet {
 	list-style-type: none;
 	background: #fff;
 	border: 1px solid #eee;
 	max-width: 700px;
-	overflow: hidden;
 	padding: 1em;
-	position: relative;
+	
 	.container-fluid {
 		margin-left: 50px;
-		.user-avatar {
-			position: absolute;
-			left: 15px;
-			width: 48px;
-			height: 48px;
-			padding: 0;
-			img {
-				border-radius: 10%;
-				width: 100%;
-				height: 100%;
+		padding-left: 10px;
+		padding-right: 0;
+		position: relative;
+		.header {
+			.account {
+				display: inline-block;
+				a {
+					text-decoration: none;
+				}
+				.user-avatar {
+					position: absolute;
+					left: -50px;
+					width: 48px;
+					height: 48px;
+					padding: 0;
+					img {
+						border-radius: 10%;
+						width: 100%;
+						height: 100%;
+					}
+				}
+				.text {
+					.username span:first-child {
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+			.account .username span:nth-child(2), .time {
+				color: #8B8B8B;
+			}
+			.time {
+				&:before {
+					content: "\00b7";
+					margin-right: 0.5em;
+					font-size: 16px;
+				}
+			}
+			.dropdown {
+				position: absolute;
+				right: 0;
+				top: 0;
+				#dropdownMenu1 {
+					font-size: 12px;
+				}
 			}
 		}
-		.text {
-			.username, .date {
-				display: inline-block;
-			}
+		.btn-action {
+			background: transparent;
+			border: 0;
+			padding: 0;
+			color: #aab8c2;
 		}
 		.footer {
 			.actions {
 				div {
 					display: inline-block;
 				}
+				.reply, .retweet, .like {
+					
+					button {
+						.icon-container, .text-container {
+							font-weight: bold;
+						}
+						.icon-container {
+							i {
+								font-size: 16px;
+								margin-right: .5em;
+							}
+						}
+						.text-container {
+							span {
+								font-size: 14px;
+							}
+						}
+					}
+				}
+				.reply .btn-action:hover {
+					color: #3491D4;
+				}
+				.retweet .btn-action:hover {
+					color: #2EB145;
+				}
+				.like .btn-action:hover {
+					color: #E65252;
+				}
+			}
+			.row {
+				margin: 0;
+				.col-xs-4 {
+					padding: 0;
+				}
 			}
 		}
 	}
 
+}
+
+@media screen and (min-width: 600px) {
+	.tweet {
+		.container-fluid {
+
+
+			.footer {
+				.actions {
+					max-width: 40%;
+				}
+			}
+		}
+	}
 }
