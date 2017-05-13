@@ -1,0 +1,31 @@
+!!! 5
+%html
+  %head
+    %title twittah
+    = csrf_meta_tags
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body.body-sign-up
+    %header
+      %nav.navbar.navbar-fixed-top
+        .container
+          .navbar-header
+            %h1
+              %a.navbar-brand{ href: root_path }
+                %li.fa.fa-twitter
+            %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbar-collapse-2", "data-toggle" => "collapse", :type => "button"}
+              %i.fa.fa-bars
+
+          #navbar-collapse-2.collapse.navbar-collapse.navbar-right
+            %ul.nav.navbar-nav
+              = render "partials/language_nav"
+              %li
+                = link_to "Have an account? Sign in", new_user_session_path
+    - flash.each do |key, value|
+      %div{:class => "alert alert-#{key} alert-dismissible"}
+        = value
+        %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+    = yield

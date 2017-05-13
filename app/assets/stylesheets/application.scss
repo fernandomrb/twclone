@@ -13,23 +13,51 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "main";
 @import "tweets";
 @import "font-awesome";
 @import "registration";
+@import "profiles";
+
+$text_color: #909BA2;
+$blue: #1DA1F2;
 
 body {
 	background-color: #F5F8FA;
 	padding-top: 50px;
+	color: $text_color;
 }
-a {
-	color: black;
-	&:hover {
-		color: black;
-		cursor: pointer;
-	}
-}
+
+
 .navbar {
 	background-color: #fff;
+	.navbar-nav {
+		.active {
+			a {
+				background-color: inherit;
+				border-bottom: 3px solid $blue;
+				&:before {
+					content: "\25CF";
+					font-size: 14px;
+					color: $blue;
+					position: absolute;
+					top: 2px;
+					left: 5px;
+				}
+				&:hover {
+					color: $blue;
+					background-color: inherit;
+				}
+			}
+		}
+		.open > a {
+			background-color: inherit;
+			color: inherit;
+			&:focus {
+				background-color: inherit;
+			}
+		}
+	}
 	.navbar-header {
 		h1 {
 			margin: 0;
@@ -38,26 +66,87 @@ a {
 			margin: 0;
 			i {
 				font-size: 24px;
-				color: #1DA1F2
+				color: $blue;
 			}
 		}
 	}
 	.navbar-collapse {
 		margin-top: 50px;
+		.nav {
+			.btn-tweet {
+				padding: 0 1em;
+			}
+		}
 	}
 	.navbar-form {
-		padding: 0;
+		padding: 1em;
 		input[type="text"] {
 			width: 100%;
+			border-radius: 21px;
+		}
+		.form-control-feedback {
+			top: 9px;
+		}
+	}
+	li {
+		a, div {
+			padding: 1em;
+		}
+		.dropdown-menu {
+			min-width: 250px;
+			border-radius: 1%;
+			margin-top: .5em;
+			a:hover {
+				background-color: $blue;
+				color: #fff;
+			}
+			div {
+				padding: 0.5em 1em;
+				a {
+					padding: 6px 12px;
+				}
+				.btn {
+					color: #fff !important;
+				}
+				.form-group {
+					margin: 0;
+					padding: .5em 0;
+				}
+				.checkbox {
+					padding: 0;
+					a:hover {
+						background-color: inherit;
+					}
+				}
+			}
+			h4 {
+				font-size: 16px;
+			}
+			.btn-link {
+				color: $blue;
+				font-size: 12px;
+			}
 		}
 	}
 }
 
-.panel-margin {
-	margin: 0 4em;
+.dropdown-menu {
+	li {
+		a {
+			color: $text_color;
+		}
+
+	}
 }
+
+
 .checkbox input[type="checkbox"] {
 	margin-left: 0;
+}
+.checkbox {
+	label:after {
+		content: " - ";
+	}
 }
 .panel {
 	margin-top: 2em;
@@ -71,16 +160,14 @@ a {
 		}
 	}
 }
+.btn-primary {
+	color: #fff;
+}
 
 @media screen and (min-width: 600px) {
 	.panel {
-		max-width: 70%;
+		max-width: 40%;
 		margin: 2em auto;
-		form {
-			.form-control {
-				max-width: 50%;
-			}
-		}
 	}
 }
 @media screen and (min-width: 768px) {
@@ -88,15 +175,57 @@ a {
 		.navbar-header {
 			position: absolute;
 			top: -2px;
-			left: 49%;
+			left: 48%;
+			.navbar-brand {
+				margin-left: -15px;
+			}
 		}
 
 		.navbar-collapse {
 			margin-top: 0;
+			.nav {
+				.btn-tweet {
+					padding: 0.5em 1em;
+					//top: 10px;
+				}
+			}
 		}
 		.navbar-form {
 			padding: 0;
 			width: 150px;
+			margin: 0.5em 0;
+		}
+		.dropdown-menu {
+			&:before {
+				position: absolute;
+			  top: -7px;
+			  right: 9px;
+			  display: inline-block;
+			  border-right: 7px solid transparent;
+			  border-bottom: 7px solid #ccc;
+			  border-left: 7px solid transparent;
+			  border-bottom-color: rgba(0, 0, 0, 0.2);
+			  content: '';
+			}
+			&:after {
+				position: absolute;
+			  top: -6px;
+			  right: 10px;
+			  display: inline-block;
+			  border-right: 6px solid transparent;
+			  border-bottom: 6px solid #ffffff;
+			  border-left: 6px solid transparent;
+			  content: '';
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	.navbar {
+		.navbar-form {
+			padding: 0;
+			width: 200px;
 		}
 	}
 }

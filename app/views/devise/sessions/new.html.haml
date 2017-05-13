@@ -1,18 +1,10 @@
-.panel.panel-default
-  .panel-body
-    .panel-margin
-      %h2 Log in to twitter
-      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .form-group
-          = f.email_field :email, autofocus: true, placeholder: "Email or username", class: "form-control"
-        .form-group
-          = f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control"
-        - if devise_mapping.rememberable?
-          .checkbox
-            = f.check_box :remember_me
-            = f.label :remember_me
-        = f.submit "Log in", class: "btn btn-primary"
-  .panel-footer
-    .panel-margin
-      = render "devise/shared/links"
+.container
+	.panel.panel-default
+	  .panel-body
+	    .panel-margin
+	      %h2 Log in to twitter
+	      = render "form"
+	  .panel-footer
+	    .panel-margin
+	      = render "devise/shared/links"
 

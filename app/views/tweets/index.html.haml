@@ -1,5 +1,6 @@
-%h2 Time Line
-%a{ :href => new_tweet_path } new tweet
+.container
+	%h2 Time Line
+	%a{ :href => new_tweet_path } new tweet
 
-%ul{ class: "tweets" }
-	= render @tweets
+	%ul{ class: "tweets" }
+		= render @tweets

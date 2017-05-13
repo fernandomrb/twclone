@@ -12,7 +12,7 @@ header {
 		background: linear-gradient(to right, rgba(147,206,222,1) 0%, rgba(73,165,191,1) 36%, rgba(116,207,155,1) 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#74cf9b', GradientType=1 );
 		
-		.navbar-brand, li, a {
+		.navbar-brand, .nav > li > a {
 			color: #fff !important;
 		}
 		.navbar-header {
@@ -29,17 +29,17 @@ header {
 		}
 	}
 
-	.nav, .navbar-nav {
-		
-		li {
-			margin: 1em 0.5em;
-			a {
-				padding: 0;
-				&:hover {
-					background: none;
-				}
+	.navbar-nav > li {
+		margin: 1em 0.5em;
+		a {
+			padding: 0;
+			&:hover {
+				background: none;
 			}
 		}
+	}
+	.dropdown-menu li > a {
+		padding: .5em 1em;
 	}
 }
 

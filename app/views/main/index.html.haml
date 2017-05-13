@@ -1,0 +1,20 @@
+.container
+	.main-pg
+		.row
+			.panel.panel-default.col-md-4
+				.panel-body
+					= render "devise/sessions/form"
+		.row			
+			.panel.panel-default.col-md-4
+				.panel-body
+					%h4
+						%strong New to twittah?
+						Sign up
+					= form_for(resource, as: resource_name, url: pre_registration_path) do |f|
+						= devise_error_messages!
+						.form-group
+							= f.email_field :email, class: "form-control", placeholder: "Email"
+						.form-group
+							= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
+						.actions
+							= f.submit "Sign up", class: "btn btn-warning btn-block"

@@ -1,0 +1,27 @@
+%ul.nav.navbar-nav
+  %li
+    = link_to root_path do
+      %i.fa.fa-twitter
+      Home
+  %li
+    = link_to "#" do
+      About us
+
+%ul.nav.navbar-nav.navbar-right
+  - if current_page? root_path
+    = render "partials/language_nav"
+  - else
+    %li.dropdown
+      %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => new_user_session_path, :role => "button"}
+        Have an account? Sign in
+        %span.caret
+      %ul.dropdown-menu
+        %li
+          %div
+            %h4 Have an account?
+            = render "devise/sessions/form"
+        %li.divider{:role => "separator"}
+        %li
+          %div
+            %h4 New on twittah?
+            = link_to "Sign up", new_user_registration_path, class: "btn btn-block btn-info"

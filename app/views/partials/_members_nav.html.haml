@@ -1,0 +1,32 @@
+%ul.nav.navbar-nav
+  %li.active
+    = link_to root_path do
+      %i.fa.fa-home
+      Home
+  %li
+    = link_to "#" do
+      %i.fa.fa-bell
+      Notifications
+  %li
+    = link_to "#" do
+      %i.fa.fa-envelope
+      Messages
+
+%ul.nav.navbar-nav.navbar-right
+  %li.btn-tweet
+    %button.btn.btn-primary.btn-block 
+      %i.fa.fa-pencil 
+      Tweet
+  %li
+    %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+      Dropdown
+      %span.caret
+    %ul.dropdown-menu
+      %li
+        %a{:href => "#"} Action
+      %li
+        %a{:href => "#"} Another action
+      %li
+        %a{:href => "#"} Something else here
+      %li
+        = link_to "Sign out", destroy_user_session_path, method: :delete

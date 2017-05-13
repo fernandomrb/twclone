@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$text_color: #909BA2;
+
 .tweets {
 	margin: 0 auto;
 	padding: 0;
@@ -41,11 +43,14 @@
 						&:hover {
 							text-decoration: underline;
 						}
+						&:after {
+							content: "\00a0";
+						}
 					}
 				}
 			}
-			.account .username span:nth-child(2), .time {
-				color: #8B8B8B;
+			.account .username span:nth-child(2) {
+				color: $text_color;
 			}
 			.time {
 				&:before {
@@ -60,14 +65,20 @@
 				top: 0;
 				#dropdownMenu1 {
 					font-size: 12px;
+					&:hover {
+						color: #3491D4;
+					}
 				}
 			}
+		}
+		.header .fullname, .body {
+			color: #000;
 		}
 		.btn-action {
 			background: transparent;
 			border: 0;
 			padding: 0;
-			color: #aab8c2;
+			color: $text_color;
 		}
 		.footer {
 			.actions {
