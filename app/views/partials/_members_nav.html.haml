@@ -13,20 +13,22 @@
       Messages
 
 %ul.nav.navbar-nav.navbar-right
-  %li.btn-tweet
-    %button.btn.btn-primary.btn-block 
-      %i.fa.fa-pencil 
-      Tweet
   %li
-    %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-      Dropdown
-      %span.caret
+    %a.dropdown-toggle.account{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+      = image_tag current_user.avatar, class: "img-circle img-responsive"
+      %span.visible-xs Cuenta
+      %span.caret.visible-xs
     %ul.dropdown-menu
       %li
-        %a{:href => "#"} Action
+        = link_to profile_user_path(current_user) do
+          %strong.center-block= current_user.name
+          %small view profile
+      %li.divider{:role => "separator"}
       %li
-        %a{:href => "#"} Another action
-      %li
-        %a{:href => "#"} Something else here
+        = link_to "Account settings", edit_user_registration_path
       %li
         = link_to "Sign out", destroy_user_session_path, method: :delete
+  %li.btn-tweet
+    = link_to new_tweet_path, class: "btn btn-primary", data: { toggle: "modal", target: "#modal-tweet" }, remote: true do
+      %i.fa.fa-pencil 
+      Tweet

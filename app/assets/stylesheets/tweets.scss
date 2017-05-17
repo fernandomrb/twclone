@@ -3,7 +3,105 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $text_color: #909BA2;
+$blue: #1DA1F2;
 
+.btn-follow, .btn-follow:hover {
+	color: $blue;
+}
+.btn-unfollow {
+	color: #fff;
+	background: $blue;
+	i {
+		&:nth-child(2) {
+			display: none;
+		}
+	}
+	&:hover {
+		background: #D44343;
+		color: #fff;
+		i {
+			&:first-child {
+				display: none;
+			}
+			&:nth-child(2) {
+				display: inline;
+			}
+		}
+	}
+
+}
+
+.top-space {
+	margin-top: 1em;
+}
+
+.container .row .profile-header {
+	border-radius: 100px;
+	.profile-bg {
+		height: 100px;
+		img {
+			height: 100%;
+			border-radius: 5px 5px 0 0;
+		}
+	}
+	.bar {
+		height: 105px;
+		border-radius: 0 0 5px 5px;
+		.profile-card {
+			margin-top: 0;
+			margin-left: 80px;
+			margin-bottom: .5em;
+			.fullname {
+				margin-bottom: 0;
+			}
+			.username {
+				margin-top: -5px;
+			}
+		}
+		.profile-nav {
+			.nav-tabs {
+				display: flex;
+				li {
+					flex-grow: 1;
+					a {
+						padding: 0;
+						.tab-value {
+							color: $blue;
+							font-weight: normal;
+							text-align: left;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.new-tweet {
+	.jumbotron {
+		display: flex;
+		flex-flow: row nowrap;
+		padding: 1em 2em;
+		margin-bottom: 0;
+		overflow: hidden;
+		border-radius: 5px 5px 0 0;
+		background: #D8E9F0;
+		img {
+			flex-grow: 1;
+			margin-right: 1em;
+			width: 35px;
+		}
+		form {
+			flex-grow: 2;
+			.form-group {
+				margin-bottom: 0;
+			}
+			.form-group .pull-right {
+				margin-top: .5em;
+				display: none;
+			}
+		}
+	}
+}
 .tweets {
 	margin: 0 auto;
 	padding: 0;
@@ -124,6 +222,14 @@ $text_color: #909BA2;
 	}
 
 }
+.modal-body {
+	overflow: hidden;
+	.form-group {
+		.pull-right {
+			vertical-align: baseline;
+		}
+	}
+}
 
 @media screen and (min-width: 600px) {
 	.tweet {
@@ -132,7 +238,7 @@ $text_color: #909BA2;
 
 			.footer {
 				.actions {
-					max-width: 40%;
+					max-width: 60%;
 				}
 			}
 		}

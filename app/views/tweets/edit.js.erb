@@ -1,0 +1,9 @@
+$("#modal-tweet .modal-title").text("Edit tweet");
+
+$(".modal-body").html("<%= j render "form" %>");
+
+$("#modal-tweet").modal("show");
+
+$('#modal-tweet').on('shown.bs.modal', function () {
+  $('#tweet-area').focus()
+})

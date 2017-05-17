@@ -1,40 +1,6 @@
 .profile-page
 	.profile-header
-		.profile-bg
-			%img.img-responsive{ src: asset_path('hr.jpg'), alt: "User header" }
-		.bar
-			.container
-				.profile-avatar.thumbnail
-					%img.img-responsive{ src: asset_path('hr.jpg'), alt: "User avatar" }
-				.profile-card
-					.fullname
-						%span
-							%strong= @user.email
-					.username
-						%small @username
-					.bio
-						%p Nonne vides quid sit? Tu es ... Jesse me respice.
-				.profile-nav
-					%ul.nav.nav-tabs
-						%li.active{ role: "presentation" }
-							= link_to "#" do 
-								%span.tab-value 3
-								%span.tab-label Tweets
-						%li{ role: "presentation" } 
-							= link_to "#" do
-								%span.tab-value 3
-								%span.tab-label Following
-						%li{ role: "presentation" } 
-							= link_to "#" do
-								%span.tab-value 3
-								%span.tab-label Followers
-						%li{ role: "presentation" }
-							= link_to "#" do
-								%span.tab-value 3
-								%span.tab-label Likes
-					= link_to edit_user_registration_path, class: "btn btn-default btn-edit" do
-						%i.fa.fa-edit
-						%span Edit profile
+		= render "profile_header", user: @user
 	.container
 		.row
 			.profile-sidebar.col-sm-3.col-md-2

@@ -1,37 +1,62 @@
 .container
-  %h2
-    Edit #{resource_name.to_s.humanize}
-  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-    = devise_error_messages!
-    .field
-      = f.label :email
-      %br/
-      = f.email_field :email, autofocus: true
-    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      %div
-        Currently waiting confirmation for: #{resource.unconfirmed_email}
-    .field
-      = f.label :password
-      %i (leave blank if you don't want to change it)
-      %br/
-      = f.password_field :password, autocomplete: "off"
-      - if @minimum_password_length
-        %br/
-        %em
-          = @minimum_password_length
-          characters minimum
-    .field
-      = f.label :password_confirmation
-      %br/
-      = f.password_field :password_confirmation, autocomplete: "off"
-    .field
-      = f.label :current_password
-      %i (we need your current password to confirm your changes)
-      %br/
-      = f.password_field :current_password, autocomplete: "off"
-    .actions
-      = f.submit "Update"
-  %h3 Cancel my account
-  %p
-    Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-  = link_to "Back", :back
+  .panel.panel-default
+    .panel-body
+      %h2
+        Edit #{resource_name.to_s.humanize}
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f|
+        = devise_error_messages!
+        .form-group
+          = f.text_field :name, autofocus: true, class: "form-control", placeholder: "Full name"
+        .form-group
+          .input-group
+            %span.input-group-addon @
+            = f.text_field :username, class: "form-control", placeholder: "Username"
+        .form-group
+          = f.text_area :bio, class: "form-control", placeholder: "Biography", maxLength: "160"
+        .form-group
+          = f.email_field :email, class: "form-control", placeholder: "Email"
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          %div
+            Currently waiting confirmation for: #{resource.unconfirmed_email}
+        .form-group
+          - if current_user.avatar.url.present?
+            = image_tag(current_user.avatar.url, class: "img-responsive")
+            = f.label :remove_avatar do
+              = f.check_box :remove_avatar
+              %i.fa.fa-trash
+              Remove avatar
+          = f.label :avatar do
+            Avatar
+            = f.file_field :avatar, class: "form-control"
+            = f.hidden_field :avatar_cache
+        .form-group
+          - if current_user.cover.url.present?
+            = image_tag(current_user.cover.url, class: "img-responsive")
+            = f.label :remove_cover do
+              = f.check_box :remove_cover
+              %i.fa.fa-trash
+              Remove cover
+          = f.label :cover do
+            Cover
+            = f.file_field :cover, class: "form-control"
+            = f.hidden_field :cover_cache
+        .form-group
+          %i (leave blank if you don't want to change it)
+          = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
+          - if @minimum_password_length
+            %em
+              = @minimum_password_length
+              characters minimum
+        .form-group
+          = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password confirmation"
+        .form-group
+          %i (we need your current password to confirm your changes)
+          = f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "Current password", required: true
+        .actions
+          = link_to "Discard", :back, class: "btn btn-danger"
+          = f.submit "Update", class: "btn btn-primary"
+    .panel-footer
+      %h3 Cancel my account
+      %p
+        Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger"}
+        

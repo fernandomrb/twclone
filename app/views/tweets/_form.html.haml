@@ -1,15 +1,9 @@
-= form_for @tweet, html: { multipart: true} do |f|
-	- if @tweet.errors.any? 
-		%h3 
-			= pluralize(@tweet.errors.count, "error") 
-			prohibited this tweet from being saved:
-
-		%ul
-			- @tweet.errors.full_messages.each do |message|
-				%li 
-					= message
+= form_for @tweet, remote: true, html: { multipart: true} do |f|
+	#errors_explanation.text-danger.bg-danger
 
 	.form-group					
-		= f.text_area :body, class: "form-control", placeholder: "tweet something"
-	.form-group	
-		= f.submit "tweet", class: "btn btn-primary"
+		= f.text_area :body, class: "form-control tweet-area", placeholder: "tweet something", maxlength: "140", rows: "1"
+	.form-group
+		.pull-right
+			%span.remaining
+			= f.submit "tweet", class: "btn btn-primary tweeting"

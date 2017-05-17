@@ -1,16 +1,16 @@
-%li{class:"tweet"}
+%li.tweet{ id: "tweet_#{ tweet.id }" }
 	.container-fluid
 		.header
 			.account
-				= link_to "#" do
+				= link_to profile_user_path(tweet.user) do
 					.user-avatar
-						%img{ src: "http://vignette1.wikia.nocookie.net/cutemariobro/images/5/59/Person-placeholder.jpg" }
+						= image_tag tweet.user.avatar
 					.text
 						.username
 							%span.fullname
-								%strong= tweet.user.email
-							%span @username
-			%small{ class: "time" } Now
+								%strong= tweet.user.name
+							%span @#{tweet.user.username}
+			%small{ class: "time" }= time_ago_in_words(tweet.created_at)
 			.dropdown
 				%button#dropdownMenu1.btn.btn-action.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
 					%i.fa.fa-chevron-down{"data-toggle" => "tooltip", "data-placement" =>"top", :title => "More"}
@@ -45,9 +45,10 @@
 							.action-count
 								%span 3
 				.like.col-xs-4
-					%button{ class: "btn btn-action" } 
-						.icon-container
-							%i{ class: "fa fa-heart", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Like" }
-						.text-container
-							.action-count
-								%span 6
+					%button{ class: "btn btn-action" }
+						= link_to like_tweet_path(tweet) do
+							.icon-container
+								%i{ class: "fa fa-heart", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Like" }
+							.text-container
+								.action-count
+									%span 6

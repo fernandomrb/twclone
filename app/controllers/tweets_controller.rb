@@ -1,10 +1,11 @@
 class TweetsController < ApplicationController
 
-  before_action :set_tweet, only: [:edit, :update, :show, :destroy]
+  before_action :set_tweet, only: [:edit, :update, :show, :destroy, :like, :unlike]
   before_action :authenticate_user!, except: [:show]
   
   def index
-    @tweets = Tweet.all.order("created_at DESC")
+    @tweets = Tweet.of_followed_users(current_user).order("created_at DESC")
+    @tweet = Tweet.new
   end
 
   def new
@@ -14,9 +15,13 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.new(tweet_params)
     if @tweet.save
-      redirect_to @tweet, success: "Your tweet has been sent."
+      respond_to do |format|
+        format.json { head :no_content }
+        format.js { flash.now[:success] = "Your tweet has been created." }
+      end
     else
-      render :new
+      format.json { render json: @tweet.errors.full_messages, 
+                            status: :unprocessable_entity }
     end
 
   end
@@ -27,18 +32,33 @@ class TweetsController < ApplicationController
 
   def update
     if @tweet.update(tweet_params)
-      redirect_to @tweet, success: "Your tweet has been updated."
+      respond_to do |format|
+        format.json { head :no_content }
+        format.js
+      end
     else
-      render :edit
+      format.json { render json: @tweet.errors.full_messages, 
+                            status: :unprocessable_entity }
     end
   end
 
   def edit
   end
 
+  def like
+    @tweet.like
+  end
+
+  def dislike
+
+  end
+
   def destroy
-    if @tweet.destroy 
-      redirect_to root_path, notice: "Your tweet has been deleted."
+    @tweet.destroy 
+    respond_to do |format|
+      format.js
+      format.html { redirect_to root_path }
+      format.json { head :no_content }
     end
   end
 
@@ -48,7 +68,7 @@ class TweetsController < ApplicationController
     end
 
     def tweet_params
-      params.require(:tweet).permit(:body)
+      params.require(:tweet).permit(:body, :like)
     end
 
 end

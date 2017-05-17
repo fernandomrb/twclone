@@ -18,7 +18,59 @@
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
+
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip()
 	});
+
+	$(".jumbotron .tweet-area").focus(function(e) {
+		$(this).attr('rows', '3');
+		$(".form-group .pull-right").show();
+		tweetLength();
+	});
+	$(".jumbotron .tweet-area").blur(function(e) {
+		if ($(this).val() === "") {
+			minimizeTweetForm();
+		} 
+	});
+	$(".jumbotron .new_tweet").submit(function(e) {
+			minimizeTweetForm();
+	});
+
+	function minimizeTweetForm() {
+		$(".jumbotron .tweet-area").attr('rows', '1');
+		$(".form-group .pull-right").hide();
+	} 
+
+	function tweetLength() {
+		var maxLength = $(".tweet-area").attr('maxLength');
+		$(".tweet-area").on("input", function(event) {
+			var length = $(this).val().length;
+			var length = maxLength - length;
+			var span = $(".remaining");
+			if(length <= 20) {
+				span.addClass('text-danger');
+			} else {
+				span.removeClass('text-danger');
+			}
+			span.text(length);
+		});
+	}
+	$("#modal-tweet").on("shown.bs.modal", function() {
+		tweetLength();
+		$(".modal-body .tweet-area").attr('rows', '2');
+	});
+	$(document).ajaxError(function(event,xhr,options,exc) {
+	    
+	    var errors = JSON.parse(xhr.responseText);
+	    var er ="<ul>";
+	    for(var i = 0; i < errors.length; i++){
+	        var list = errors[i];
+	        er += "<li>"+list+"</li>"
+	    }
+	    er+="</ul>"
+	    $("#error_explanation").html(er);
+	       
+	});
+
 });

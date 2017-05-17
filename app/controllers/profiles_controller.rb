@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
 
 	def show
 		@user = User.find_by(id: params[:id])
-		@tweets = @user.tweets
+		@tweets = @user.tweets.order("created_at DESC")
 	end
 
 end

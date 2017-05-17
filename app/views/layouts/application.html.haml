@@ -24,7 +24,7 @@
           - else
             = render "partials/guests_nav"
 
-          = render "partials/nav_form" unless current_page? root_path
+          = render "partials/nav_form" unless @disabled_search
 
     - flash.each do |key, value|
       %div{:class => "alert alert-#{key} alert-dismissible"}

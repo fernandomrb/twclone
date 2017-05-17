@@ -28,7 +28,9 @@ body {
 	color: $text_color;
 }
 
-
+textarea {
+	resize: none;
+}
 .navbar {
 	background-color: #fff;
 	.navbar-nav {
@@ -74,7 +76,30 @@ body {
 		margin-top: 50px;
 		.nav {
 			.btn-tweet {
-				padding: 0 1em;
+				padding: 0 .5em;
+				a {
+					padding: .6em 1em;
+					color: #fff;
+					&:hover {
+						background: $blue;
+					}
+					i {
+						margin-right: .5em;
+					}
+				}
+			}
+			li {
+				.account {
+					padding: .8em .3em .5em .3em;
+					display: flex;
+					flex-flow: row nowrap;
+					align-items: center;
+					img {
+						width: 30px;
+						height: 30px;
+						margin-right: .5em;
+					}
+				}
 			}
 		}
 	}
@@ -93,7 +118,6 @@ body {
 			padding: 1em;
 		}
 		.dropdown-menu {
-			min-width: 250px;
 			border-radius: 1%;
 			margin-top: .5em;
 			a:hover {
@@ -164,6 +188,7 @@ body {
 	color: #fff;
 }
 
+
 @media screen and (min-width: 600px) {
 	.panel {
 		max-width: 40%;
@@ -172,6 +197,7 @@ body {
 }
 @media screen and (min-width: 768px) {
 	.navbar {
+		height: 52px;
 		.navbar-header {
 			position: absolute;
 			top: -2px;
@@ -185,8 +211,9 @@ body {
 			margin-top: 0;
 			.nav {
 				.btn-tweet {
-					padding: 0.5em 1em;
-					//top: 10px;
+					a {
+						margin-top: .5em;
+					}
 				}
 			}
 		}

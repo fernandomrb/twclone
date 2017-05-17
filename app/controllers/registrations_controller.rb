@@ -2,6 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def preRegister 
 		#@full_name = params[:full_name]
+		session[:name] = pre_register_params[:name]
 		session[:email] = pre_register_params[:email]
 		session[:password] = pre_register_params[:password]
 		redirect_to new_user_registration_path
@@ -9,6 +10,6 @@ class RegistrationsController < Devise::RegistrationsController
 
 	private
 		def pre_register_params
-			params.require(:user).permit(:full_name, :email, :password)
+			params.require(:user).permit(:name, :email, :password)
 		end
 end

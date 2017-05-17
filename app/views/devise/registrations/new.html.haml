@@ -4,13 +4,19 @@
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = devise_error_messages!
       .form-group
-        = f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email", value: session[:email]
+        = f.text_field :name, autofocus: true, class: "form-control", placeholder: "Full name", value: session[:name], required: true
+      .form-group
+        .input-group
+          %span.input-group-addon @
+          = f.text_field :username, class: "form-control", placeholder: "Username", required: true
+      .form-group
+        = f.email_field :email, class: "form-control", placeholder: "Email", value: session[:email], required: true
       .form-group
         - if @minimum_password_length
           %em
             (#{@minimum_password_length} characters minimum)
-        = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password", value: session[:password]
+        = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password", value: session[:password], required: true
       .form-group
-        = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password confimartion"
+        = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password confimartion", required: true
       .actions
         = f.submit "Sign up", class: "btn btn-primary"

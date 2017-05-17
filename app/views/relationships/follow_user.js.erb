@@ -1,0 +1,4 @@
+$('.btn-follow').attr('class', 'btn btn-unfollow')
+                   .attr('href', "<%= unfollow_user_path(@user.username) %>")
+                   .attr('id', 'unfollow-button')
+                   .html("<i class='fa fa-check'><i class='fa fa-user-times hidden'></i><span>Following</span>");

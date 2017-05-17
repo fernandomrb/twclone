@@ -1,0 +1,4 @@
+$('.btn-unfollow').attr('class', 'btn btn-follow')
+		               .attr('href', "<%= follow_user_path(@user.username) %>")
+		               .attr('id', 'follow-button')
+		               .html("<i class='fa fa-user-plus'></i><span>Follow</span>");
