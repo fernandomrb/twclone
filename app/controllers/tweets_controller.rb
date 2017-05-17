@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
 
-  before_action :set_tweet, only: [:edit, :update, :show, :destroy, :like, :unlike]
+  before_action :set_tweet, only: [:edit, :update, :show, :destroy, :like, :dislike]
   before_action :authenticate_user!, except: [:show]
   
   def index
@@ -46,19 +46,28 @@ class TweetsController < ApplicationController
   end
 
   def like
-    @tweet.like
+    if @tweet.like_by current_user
+      respond_to do |format|
+        format.json { head :no_content }
+        format.js
+      end
+    end
   end
 
   def dislike
-
+    if @tweet.unliked_by current_user
+      respond_to do |format|
+        format.json { head :no_content }
+        format.js
+      end
+    end
   end
 
   def destroy
     @tweet.destroy 
     respond_to do |format|
-      format.js
-      format.html { redirect_to root_path }
       format.json { head :no_content }
+      format.js
     end
   end
 

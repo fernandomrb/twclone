@@ -7,9 +7,11 @@
 				.profile-card
 					= link_to profile_user_path(@user) do
 						.fullname
-							%span= @user.email
+							%span= @user.name
 						.username
-							%span @username
+							%span @#{ @user.username }
+					.bio
+						= @user.bio
 					.info
 						.created_at
 							%i.fa.fa-calendar

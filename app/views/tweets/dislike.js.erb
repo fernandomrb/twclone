@@ -1,0 +1,10 @@
+$("#tweet_<%= @tweet.id %> .like a").attr('href', '<%= like_tweet_path(@tweet) %>')
+																		.removeClass('liked')
+																		.children('.icon-container')
+																		.children('.fa-heart')
+																		.attr('data-original-title', 'Like')
+																		.parent('.icon-container')
+																		.siblings('.text-container')
+																		.children('.action-count')
+																		.children('span')
+																		.text("<%= @tweet.get_likes.size %>");

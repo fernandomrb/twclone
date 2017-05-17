@@ -1,0 +1,6 @@
+= link_to like_tweet_path(tweet), method: :put, remote: true do
+	.icon-container
+		%i{ class: "fa fa-heart", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Like" }
+	.text-container
+		.action-count
+			%span= tweet.get_likes.size

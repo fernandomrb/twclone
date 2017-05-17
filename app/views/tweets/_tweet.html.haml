@@ -45,10 +45,8 @@
 							.action-count
 								%span 3
 				.like.col-xs-4
-					%button{ class: "btn btn-action" }
-						= link_to like_tweet_path(tweet) do
-							.icon-container
-								%i{ class: "fa fa-heart", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Like" }
-							.text-container
-								.action-count
-									%span 6
+					%button{ class: "btn btn-action " }
+						- if current_user.voted_for? tweet
+							= render "/tweets/dislike_btn", tweet: tweet
+						- else
+							= render "/tweets/like_btn", tweet: tweet

@@ -1,0 +1,6 @@
+= link_to dislike_tweet_path(tweet), class: "liked", method: :put, remote: true do
+	.icon-container
+		%i{ class: "fa fa-heart", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Dislike" }
+	.text-container
+		.action-count
+			%span= tweet.get_likes.size

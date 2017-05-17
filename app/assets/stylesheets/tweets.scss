@@ -137,12 +137,9 @@ $blue: #1DA1F2;
 					}
 				}
 				.text {
-					.username span:first-child {
-						&:hover {
+					.username span {
+						strong:hover {
 							text-decoration: underline;
-						}
-						&:after {
-							content: "\00a0";
 						}
 					}
 				}
@@ -186,19 +183,27 @@ $blue: #1DA1F2;
 				.reply, .retweet, .like {
 					
 					button {
-						.icon-container, .text-container {
-							font-weight: bold;
-						}
-						.icon-container {
-							i {
-								font-size: 16px;
-								margin-right: .5em;
+						a {
+							color: inherit;
+							text-decoration: none;
+							.icon-container, .text-container {
+								font-weight: bold;
+							}
+							.icon-container, .text-container
+							.icon-container {
+								i {
+									font-size: 16px;
+									margin-right: .5em;
+								}
+							}
+							.text-container {
+								span {
+									font-size: 14px;
+								}
 							}
 						}
-						.text-container {
-							span {
-								font-size: 14px;
-							}
+						.liked {
+							color: #E65252;
 						}
 					}
 				}
