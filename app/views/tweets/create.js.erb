@@ -1,4 +1,4 @@
-if($("#modal-tweet").data('bs.modal').isShown) {
+if($("#modal-tweet").is(':visible')) {
 	$("#modal-tweet").modal("toggle"); 
 }
 $(".new-tweet .tweet-area").val("");
