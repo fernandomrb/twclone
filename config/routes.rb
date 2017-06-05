@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "/users/pre_register", to: "registrations#preRegister", as: :pre_registration
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  resources :tweets do 
+    resources :replies
+  end
+
   get "/users/:id", to: "profiles#show", as: :profile_user
   put "/tweets/:id/like", to: "tweets#like", as: :like_tweet
   put "/tweets/:id/dislike", to: "tweets#dislike", as: :dislike_tweet
@@ -18,5 +22,4 @@ Rails.application.routes.draw do
   post '/users/:username/follow_user', to: "relationships#follow_user", as: :follow_user
   post '/users/:username/unfollow_user', to: "relationships#unfollow_user", as: :unfollow_user
   
-  resources :tweets
 end

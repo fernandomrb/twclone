@@ -1,6 +1,4 @@
-
-var modalOpen = $("#modal-tweet").data('bs.modal');
-if(modalOpen) {
+if($("#modal-tweet").data('bs.modal').isShown) {
 	$("#modal-tweet").modal("toggle"); 
 }
 $(".new-tweet .tweet-area").val("");
