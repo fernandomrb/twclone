@@ -16,14 +16,15 @@
 					%i.fa.fa-chevron-down{"data-toggle" => "tooltip", "data-placement" =>"top", :title => "More"}
 				%ul.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
 					%li
-						%a{:href => "#"} Action
-					%li
-						%a{:href => "#"} Another action
-					%li
-						%a{:href => "#"} Something else here
-					%li.divider{:role => "separator"}
-					%li
-						%a{:href => "#"} Separated link
+						%a{ href: "#" } Share
+					- if tweet.user == current_user
+						%li
+							= link_to "Edit", edit_tweet_path(tweet), remote: true
+						%li
+							= link_to "Delete", tweet, method: :delete, data: { confirm: "Are you sure?" }, remote: true
+					- else
+						%li
+							%a{ href: "#" } Report
 
 
 		.body
