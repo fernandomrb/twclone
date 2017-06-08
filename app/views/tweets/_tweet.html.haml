@@ -25,8 +25,11 @@
 					- else
 						%li
 							%a{ href: "#" } Report
-
-
+		- if tweet.parent.present?
+			.parent
+				%small 
+					In response to 
+					= link_to "@#{ tweet.user.username }", profile_user_path(tweet.user)
 		.body
 			%p= tweet.body
 		.footer
@@ -37,7 +40,7 @@
 							%i{ class: "fa fa-reply", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Reply" }
 						.text-container
 							.action-count
-								%span 2
+								%span= tweet.replies.size
 				.retweet.col-xs-4
 					%button{ class: "btn btn-action" } 
 						.icon-container

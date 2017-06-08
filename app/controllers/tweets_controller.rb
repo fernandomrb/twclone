@@ -13,21 +13,31 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = current_user.tweets.new(tweet_params)
+    @tweet = current_user.tweets.build(tweet_params)
+    @tweet.parent = Tweet.find(params[:parent]) unless params[:parent].nil?
     if @tweet.save
       respond_to do |format|
         format.json { head :no_content }
         format.js { flash.now[:success] = "Your tweet has been created." }
       end
     else
-      format.json { render json: @tweet.errors.full_messages, 
-                            status: :unprocessable_entity }
+      respond_to do |format| 
+        format.json { render json: @tweet.errors.full_messages, 
+                           status: :unprocessable_entity }
+        format.js { flash.now[:info] = "Your reply could not be send." }
+      end
     end
 
   end
+  
+  def reply 
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def show
-
+    @tweets = @tweet.replies
   end
 
   def update
@@ -77,7 +87,7 @@ class TweetsController < ApplicationController
     end
 
     def tweet_params
-      params.require(:tweet).permit(:body, :like)
+      params.require(:tweet).permit(:body, :parent_id)
     end
 
 end

@@ -1,8 +1,8 @@
 = form_for @tweet, remote: true, html: { multipart: true} do |f|
 	#errors_explanation.text-danger.bg-danger
 
-	.form-group					
-		= f.text_area :body, class: "form-control tweet-area", placeholder: "tweet something", maxlength: "140", rows: "1"
+	.form-group
+		= f.text_area :body, class: "form-control tweet-area", placeholder: "What's going on?", maxlength: "140", rows: "1"
 	.form-group
 		.pull-right
 			%span.remaining

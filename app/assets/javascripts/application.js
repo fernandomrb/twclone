@@ -56,6 +56,10 @@ $(document).on('turbolinks:load', function() {
 			span.text(length);
 		});
 	}
+	$(".tweet").on("click", function(e) {
+		window.location.replace("/tweets/" + $(this).attr("id").slice(6));
+		e.preventDefault();
+	});
 	$("#modal-tweet").on("shown.bs.modal", function() {
 		tweetLength();
 		$(".modal-body .tweet-area").attr('rows', '2');

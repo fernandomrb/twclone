@@ -1,5 +1,12 @@
 if($("#modal-tweet").is(':visible')) {
 	$("#modal-tweet").modal("toggle"); 
 }
-$(".new-tweet .tweet-area").val("");
-$(".tweets").prepend("<%= j render @tweet %>");
+<% if @tweet.persisted? %>
+    <% if @tweet.parent_id.nil? %>
+        $(".new-tweet .tweet-area").val("");
+        $(".tweets").prepend("<%= j render @tweet %>");
+    <% else %>
+        $(".reply-form .tweet-area").val("");
+        $(".replies").prepend("<%= j render @tweet, tweet: @tweet %>");
+    <% end %>
+<% end %>

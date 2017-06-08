@@ -34,6 +34,9 @@ $blue: #1DA1F2;
 .top-space {
 	margin-top: 1em;
 }
+.bottom-space {
+	margin-bottom: 1em;
+}
 
 .container .row .profile-header {
 	border-radius: 100px;
@@ -76,7 +79,7 @@ $blue: #1DA1F2;
 		}
 	}
 }
-.new-tweet {
+.new-tweet, .reply-form {
 	.jumbotron {
 		display: flex;
 		flex-flow: row nowrap;
@@ -102,6 +105,11 @@ $blue: #1DA1F2;
 		}
 	}
 }
+.reply-form {
+	.jumbotron {
+		border-radius: 0;
+	}
+}
 .tweets {
 	margin: 0 auto;
 	padding: 0;
@@ -111,6 +119,7 @@ $blue: #1DA1F2;
 	background: #fff;
 	border: 1px solid #eee;
 	padding: 1em;
+	cursor: pointer;
 	
 	.container-fluid {
 		margin-left: 50px;

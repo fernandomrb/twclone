@@ -11,8 +11,10 @@ Rails.application.routes.draw do
     post "/users/pre_register", to: "registrations#preRegister", as: :pre_registration
   end
   
-  resources :tweets do 
-    resources :replies
+  resources :tweets do
+    member do
+      post :reply
+    end
   end
 
   get "/users/:id", to: "profiles#show", as: :profile_user
