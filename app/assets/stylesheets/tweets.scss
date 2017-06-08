@@ -118,9 +118,11 @@ $blue: #1DA1F2;
 	list-style-type: none;
 	background: #fff;
 	border: 1px solid #eee;
-	padding: 1em;
-	cursor: pointer;
 	
+	.tweet-actionable {
+		padding: 1em;
+		cursor: pointer;
+	}
 	.container-fluid {
 		margin-left: 50px;
 		padding-left: 10px;

@@ -1,56 +1,57 @@
 %li.tweet{ id: "tweet_#{ tweet.id }" }
-	.container-fluid
-		.header
-			.account
-				= link_to profile_user_path(tweet.user) do
-					.user-avatar
-						= image_tag tweet.user.avatar
-					.text
-						.username
-							%span.fullname
-								%strong= tweet.user.name
-							%span @#{tweet.user.username}
-			%small{ class: "time" }= time_ago_in_words(tweet.created_at)
-			.dropdown
-				%button#dropdownMenu1.btn.btn-action.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
-					%i.fa.fa-chevron-down{"data-toggle" => "tooltip", "data-placement" =>"top", :title => "More"}
-				%ul.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
-					%li
-						%a{ href: "#" } Share
-					- if tweet.user == current_user
+	.tweet-actionable{ "data-url": tweet_path(tweet) }
+		.container-fluid
+			.header
+				.account
+					= link_to profile_user_path(tweet.user) do
+						.user-avatar
+							= image_tag tweet.user.avatar
+						.text
+							.username
+								%span.fullname
+									%strong= tweet.user.name
+								%span @#{tweet.user.username}
+				%small{ class: "time" }= time_ago_in_words(tweet.created_at)
+				.dropdown
+					%button#dropdownMenu1.btn.btn-action.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+						%i.fa.fa-chevron-down{"data-toggle" => "tooltip", "data-placement" =>"top", :title => "More"}
+					%ul.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
 						%li
-							= link_to "Edit", edit_tweet_path(tweet), remote: true
-						%li
-							= link_to "Delete", tweet, method: :delete, data: { confirm: "Are you sure?" }, remote: true
-					- else
-						%li
-							%a{ href: "#" } Report
-		- if tweet.parent.present?
-			.parent
-				%small 
-					In response to 
-					= link_to "@#{ tweet.user.username }", profile_user_path(tweet.user)
-		.body
-			%p= tweet.body
-		.footer
-			.actions.row
-				.reply.col-xs-4
-					%button{ class: "btn btn-action"} 
-						.icon-container
-							%i{ class: "fa fa-reply", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Reply" }
-						.text-container
-							.action-count
-								%span= tweet.replies.size
-				.retweet.col-xs-4
-					%button{ class: "btn btn-action" } 
-						.icon-container
-							%i{ class: "fa fa-retweet", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Retweet" }
-						.text-container
-							.action-count
-								%span 3
-				.like.col-xs-4
-					%button{ class: "btn btn-action " }
-						- if current_user.voted_for? tweet
-							= render "/tweets/dislike_btn", tweet: tweet
+							%a{ href: "#" } Share
+						- if tweet.user == current_user
+							%li
+								= link_to "Edit", edit_tweet_path(tweet), remote: true
+							%li
+								= link_to "Delete", tweet, method: :delete, data: { confirm: "Are you sure?" }, remote: true
 						- else
-							= render "/tweets/like_btn", tweet: tweet
+							%li
+								%a{ href: "#" } Report
+			- if tweet.parent.present?
+				.parent
+					%small 
+						In response to 
+						= link_to "@#{ tweet.user.username }", profile_user_path(tweet.user)
+			.body
+				%p= tweet.body
+			.footer
+				.actions.row
+					.reply.col-xs-4
+						%button{ class: "btn btn-action"} 
+							.icon-container
+								%i{ class: "fa fa-reply", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Reply" }
+							.text-container
+								.action-count
+									%span= tweet.replies.size
+					.retweet.col-xs-4
+						%button{ class: "btn btn-action" } 
+							.icon-container
+								%i{ class: "fa fa-retweet", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Retweet" }
+							.text-container
+								.action-count
+									%span 3
+					.like.col-xs-4
+						%button{ class: "btn btn-action " }
+							- if current_user.voted_for? tweet
+								= render "/tweets/dislike_btn", tweet: tweet
+							- else
+								= render "/tweets/like_btn", tweet: tweet
