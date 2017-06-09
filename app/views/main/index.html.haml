@@ -1,14 +1,28 @@
 .container
   .main-pg
     .row
+      .test-info.pull-left.hidden-xs
+        %h4 Test accounts
+        %p 
+          username: heisenberg
+          %br
+          password: ZgXUUSKD
+        %p 
+          username: slippingjimmy
+          %br
+          password: gFVMLBvR
+        %p 
+          username: capncook
+          %br
+          password: TryWBV6b
       .panel.panel-default.col-md-4
         .panel-body
           = render "devise/sessions/form"
-    .row      
+    .row 
       .panel.panel-default.col-md-4
         .panel-body
           %h4
-            %strong New to twittah?
+            %strong New to twitter?
             Sign up
           = form_for(resource, as: resource_name, url: pre_registration_path) do |f|
             = devise_error_messages!

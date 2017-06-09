@@ -124,6 +124,9 @@ $blue: #1DA1F2;
 .tweets {
 	margin: 0 auto;
 	padding: 0;
+	.no-more {
+		padding: 1em;
+	}
 }
 .tweet {
 	list-style-type: none;

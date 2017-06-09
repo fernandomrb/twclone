@@ -10,7 +10,7 @@
 							%span= tweet.replies.size
 		.retweet.col-xs-4
 			%button{ class: "btn btn-action" }
-				= render "retweet_btn", tweet: tweet
+				= render "tweets/retweet_btn", tweet: tweet
 		.like.col-xs-4
 			%button{ class: "btn btn-action " }
 				- if current_user.voted_for? tweet
