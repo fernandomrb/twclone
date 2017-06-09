@@ -1,0 +1,5 @@
+$("#tweet_<%= @tweet.id %> .retweet .btn-action").html("<%= j render 'retweet_btn', tweet: @tweet %>")
+                                                .children("a").addClass(".retweet-it");
+$(".tweets").prepend("<%= j render "tweet", tweet: @retweet %>");
+$("#modal-tweet").modal("toggle");
+

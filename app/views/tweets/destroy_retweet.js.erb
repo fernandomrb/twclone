@@ -1,0 +1,2 @@
+$("#tweet_<%= @retweet.id %>").fadeOut("slow");
+$("#tweet_<%= @tweet.id %> .retweet .btn-action").html("<%= j render "retweet_btn", tweet: @tweet %>");

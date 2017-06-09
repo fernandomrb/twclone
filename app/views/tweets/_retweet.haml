@@ -1,0 +1,64 @@
+- get_src_tweet(tweet)
+- if tweet.quote.present?
+	= render "tweets/quote_tweet", tweet: tweet, src_tweet: @src_tweet
+- else
+	.context
+		%small
+			Retweet 
+			%i.fa.fa-retweet.retweet-it
+			by
+			- if own_tweet?(tweet)
+				you
+			- else
+				@#{ tweet.user.username }
+	.header
+		.account
+			= link_to profile_user_path(@src_tweet.user) do
+				.user-avatar
+					= image_tag @src_tweet.user.avatar
+				.text
+					.username
+						%span.fullname
+							%strong= @src_tweet.user.name
+						%span @#{ @src_tweet.user.username }
+		%small{ class: "time" }= time_ago_in_words(@src_tweet.created_at)
+		.dropdown
+			%button#dropdownMenu1.btn.btn-action.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown"}
+				%i.fa.fa-chevron-down{"data-toggle" => "tooltip", "data-placement" =>"top", :title => "More"}
+			%ul.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
+				%li
+					%a{ href: "#" } Share
+				- if @src_tweet.user == current_user
+					%li
+						= link_to "Edit", edit_tweet_path(tweet), remote: true
+					%li
+						= link_to "Delete", tweet, method: :delete, data: { confirm: "Are you sure?" }, remote: true
+				- else
+					%li
+						%a{ href: "#" } Report
+	- if @src_tweet.parent.present?
+		.parent
+			%small 
+				In response to 
+				= link_to "@#{ @src_tweet.user.username }", profile_user_path(@src_tweet.user)
+	.body
+		%p= @src_tweet.body
+	.footer
+		.actions.row
+			.reply.col-xs-4
+				%button{ class: "btn btn-action"}
+					= link_to tweet_path(@src_tweet) do
+						.icon-container
+							%i{ class: "fa fa-reply", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Reply" }
+						.text-container
+							.action-count
+								%span= @src_tweet.replies.size
+			.retweet.col-xs-4
+				%button{ class: "btn btn-action" }
+					= render "tweets/retweet_btn", tweet: @src_tweet
+			.like.col-xs-4
+				%button{ class: "btn btn-action " }
+					- if current_user.voted_for? @src_tweet
+						= render "/tweets/dislike_btn", tweet: @src_tweet
+					- else
+						= render "/tweets/like_btn", tweet: @src_tweet

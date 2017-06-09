@@ -1,0 +1,11 @@
+= form_for :tweet, :url => { action: "retweet" }, remote: true, html: { multipart: true} do |f|
+	#errors_explanation.text-danger.bg-danger
+	- if @retweet
+		.form-group
+			= f.text_area :quote, class: "form-control tweet-area", maxlength: "140", rows: "1"
+		.form-group
+			.pull-right
+				%span.remaining
+				= f.submit "Retweet", class: "btn btn-primary tweeting"
+		.jumbotron.top-space
+			= render "tweet", tweet: @src_tweet

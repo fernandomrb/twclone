@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_relationships, source: :following
 
+  
   validates :name, presence: true, length: { maximum: 20 }
   validates :username, presence: true, length: { in: 5..15 }, uniqueness: true
   validates :bio, length: { maximum: 160 }
@@ -29,6 +30,13 @@ class User < ApplicationRecord
   def unfollow(user_id)
     following_relationships.find_by(following_id: user_id).destroy
   end
+  
+   def retweet_it?(tweet)
+     if tweet.retweets.find_by(user_id: self.id)
+       return true
+     end
+     return false
+   end
 
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup

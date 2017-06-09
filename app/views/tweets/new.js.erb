@@ -1,6 +1,11 @@
-$("#modal-tweet .modal-title").text("New tweet");
 
-$(".modal-body").html("<%= j render "form" %>");
+<% if @retweet %>
+    $("#modal-tweet .modal-title").text("Quote tweet");
+    $(".modal-body").html("<%= j render "retweet_form" %>");
+<% else %>
+    $("#modal-tweet .modal-title").text("New tweet");
+    $(".modal-body").html("<%= j render "form" %>");
+<% end %>
 
 $("#modal-tweet").modal("show");
 

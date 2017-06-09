@@ -1,0 +1,19 @@
+.footer
+	.actions.row
+		.reply.col-xs-4
+			%button{ class: "btn btn-action"}
+				= link_to tweet_path(tweet) do
+					.icon-container
+						%i{ class: "fa fa-reply", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Reply" }
+					.text-container
+						.action-count
+							%span= tweet.replies.size
+		.retweet.col-xs-4
+			%button{ class: "btn btn-action" }
+				= render "retweet_btn", tweet: tweet
+		.like.col-xs-4
+			%button{ class: "btn btn-action " }
+				- if current_user.voted_for? tweet
+					= render "/tweets/dislike_btn", tweet: tweet
+				- else
+					= render "/tweets/like_btn", tweet: tweet
