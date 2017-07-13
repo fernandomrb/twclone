@@ -21,13 +21,11 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.build(tweet_params)
     @tweet.parent = Tweet.find(params[:parent]) unless params[:parent].nil?
-    if @tweet.save
-      respond_to do |format|
+    respond_to do |format|
+      if @tweet.save
         format.json { head :no_content }
         format.js { flash.now[:success] = "Your tweet has been created." }
-      end
-    else
-      respond_to do |format| 
+      else
         format.json { render json: @tweet.errors.full_messages, 
                            status: :unprocessable_entity }
         format.js { flash.now[:info] = "Your reply could not be send." }
@@ -46,27 +44,23 @@ class TweetsController < ApplicationController
     @retweet = current_user.tweets.new(tweet_params)
     @retweet.src_tweet = @tweet
     @retweet.body = @tweet.body
-    if @retweet.save
-      respond_to do |format|
+    respond_to do |format|
+      if @retweet.save
         format.js
-      end
-    else
-      respond_to do |format|
-         format.html { flash[:warning] = "An error has ocurred, try again." }
+      else
+        format.html { flash[:warning] = "An error has ocurred, try again." }
       end
     end
   end
   
   def destroy_retweet
     @retweet = @tweet.retweets.find_by(user_id: current_user)
-    if @retweet.destroy
-      respond_to do |format|
+    respond_to do |format|
+      if @retweet.destroy
         format.html { flash[:success] = "Your retweet has been deleted." }
         format.json { head :no_content }
         format.js
-      end
-    else
-      respond_to do |format|
+      else
         format.html { flash[:warning] = "An error has ocurred, try again." }
         format.json { render json: @tweet.errors.full_messages, 
                             status: :unprocessable_entity }
@@ -79,14 +73,14 @@ class TweetsController < ApplicationController
   end
 
   def update
-    if @tweet.update(tweet_params)
-      respond_to do |format|
+    respond_to do |format|
+      if @tweet.update(tweet_params)
         format.json { head :no_content }
         format.js
-      end
-    else
-      format.json { render json: @tweet.errors.full_messages, 
+      else
+        format.json { render json: @tweet.errors.full_messages, 
                             status: :unprocessable_entity }
+      end
     end
   end
 

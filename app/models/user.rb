@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   
   validates :name, presence: true, length: { maximum: 20 }
-  validates :username, presence: true, length: { in: 5..15 }, uniqueness: true
+  validates :username, presence: true, length: { in: 5..15 }, format: { with: /\A[a-zA-Z0-9]+\Z/ }, uniqueness: true
   validates :bio, length: { maximum: 160 }
 
   def follow(user_id)  

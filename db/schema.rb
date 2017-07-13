@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609155331) do
+ActiveRecord::Schema.define(version: 20170713162328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20170609155331) do
     t.integer "user_id"
     t.integer "likes"
     t.integer "parent_id"
-    t.integer "retweets"
     t.integer "src_tweet_id"
     t.text "quote"
   end
@@ -57,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170609155331) do
     t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["username"], name: "index_users_on_username"
   end
 
   create_table "votes", force: :cascade do |t|
