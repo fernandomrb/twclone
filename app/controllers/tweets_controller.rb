@@ -25,6 +25,7 @@ class TweetsController < ApplicationController
       if @tweet.save
         format.json { head :no_content }
         format.js { flash.now[:success] = "Your tweet has been created." }
+        format.html { redirect_to tweets_url, notice: "Your tweet has been created." }
       else
         format.json { render json: @tweet.errors.full_messages, 
                            status: :unprocessable_entity }
