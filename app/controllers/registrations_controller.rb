@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-	after_Action :clean_session, except: [:preRegister]
+	after_action :clean_session, except: [:preRegister]
 	def preRegister 
 		#@full_name = params[:full_name]
 		session[:name] = pre_register_params[:name]
