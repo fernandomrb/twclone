@@ -6,15 +6,9 @@
 		.action-count
 			%span= tweet.retweets.size
 - else
-	= link_to new_retweet_path(tweet), data: { :toggle => "modal", :target => "#modal-tweet", remote: true } do
+	= link_to new_retweet_path(tweet.id), data: { :toggle => "modal", :target => "#modal-tweet", remote: true } do
 		.icon-container
 			%i{ class: "fa fa-retweet", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Retweet" }
 		.text-container
 		.action-count
 			%span= tweet.retweets.size
-	// = link_to retweet_path(tweet), class: "retweet", method: :post, remote: true do
-	// 	.icon-container
-	// 		%i{ class: "fa fa-retweet", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Retweet" }
-	// 	.text-container
-	// 	.action-count
-	// 		%span= tweet.retweets.size

@@ -23,6 +23,9 @@ $(document).on('turbolinks:load', function() {
 	  $('[data-toggle="tooltip"]').tooltip()
 	});
 	
+	$(".tweet .btn-action a").on("click", function(e) {
+		e.preventDefault();	
+	});
 	// ********************** new tweet form ****************************************
 	$(".jumbotron .tweet-area").focus(function(e) {
 		$(this).attr('rows', '3');

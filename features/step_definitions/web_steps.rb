@@ -14,6 +14,12 @@ Given(/^I fill in "(.*?)" with "(.*?)"$/) do |field, value|
   fill_in(field, :with => value) 
 end
 
+# When(/^I confirm (.+)$/) do
+#   page.accept_confirm do
+#     click_link 'Delete'
+#   end
+# end
+
 When /^(?:|I )press button "([^"]*)"$/ do |selector|
   find(:css, selector).click
 end
