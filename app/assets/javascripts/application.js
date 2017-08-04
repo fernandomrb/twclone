@@ -23,9 +23,6 @@ $(document).on('turbolinks:load', function() {
 	  $('[data-toggle="tooltip"]').tooltip()
 	});
 	
-	$(".tweet .btn-action a").on("click", function(e) {
-		e.preventDefault();	
-	});
 	// ********************** new tweet form ****************************************
 	$(".jumbotron .tweet-area").focus(function(e) {
 		$(this).attr('rows', '3');
@@ -69,8 +66,13 @@ $(document).on('turbolinks:load', function() {
 	});
 	
 	$("#modal-tweet").on("shown.bs.modal", function() {
+		$(".jumbotron #tweet_body").removeAttr('id', 'tweet_body');
 		tweetLength();
 		$(".modal-body .tweet-area").attr('rows', '2');
+	});
+
+	$("#modal-tweet").on("hidden.bs.modal", function() {
+		$(".jumbotron .tweet-area").attr('id', 'tweet_body');
 	});
 	$(document).ajaxError(function(event,xhr,options,exc) {
 	    

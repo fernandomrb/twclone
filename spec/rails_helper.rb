@@ -6,7 +6,6 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'support/database_cleaner.rb'
-require 'support/wait_for_ajax.rb'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

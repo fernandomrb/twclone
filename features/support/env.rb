@@ -17,13 +17,13 @@ Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile, http_client: client)
 end
 # Capybara.register_driver :chrome do |app|  
-#   Capybara::Selenium::Driver.new(app, browser: :chrome)
+# 	Capybara::Selenium::Driver.new(app, browser: :chrome)
 # end
 # Capybara.javascript_driver = :chrome
-# Capybara.configure do |config|  
-#   config.default_max_wait_time = 10 # seconds
-#   config.default_driver        = :selenium
-#end
+# 	Capybara.configure do |config|  
+# 	config.default_max_wait_time = 120 # seconds
+# 	config.default_driver        = :selenium
+# end
 #Capybara.javascript_driver = :webkit
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
