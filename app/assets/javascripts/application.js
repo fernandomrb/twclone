@@ -29,6 +29,9 @@ $(document).on('turbolinks:load', function() {
 		$(".form-group .pull-right").show();
 		tweetLength();
 	});
+	$(".modal-body").on("focus", "#tweet_body", function() {
+		$("#tweet_body").attr('rows', '2');
+	});
 	$(".jumbotron .tweet-area").blur(function(e) {
 		if ($(this).val() === "") {
 			minimizeTweetForm();

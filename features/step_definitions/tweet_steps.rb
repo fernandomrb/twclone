@@ -35,8 +35,8 @@ end
 
 When(/^I find some tweet and I press "([^"]*)"$/) do |action|
   user = User.find_by(username: "heisenberg")
-  tweet = Tweet.where(user: user).last
-  find(:xpath, "//*[@id='tweet_#{tweet.id}']/div/div/div[3]/div/div[2]/button/a")#{}"#tweet_#{tweet.id} > div > div > div.footer > div > div.#{action}.col-xs-4 > .btn-action > a").click
+  tweet = Tweet.find_by(user: user)
+  find("#tweet_#{tweet.id} > div > div > div.footer > div > div.#{action}.col-xs-4 > a").click
 end
 
 Then(/^I should see a popup window$/) do

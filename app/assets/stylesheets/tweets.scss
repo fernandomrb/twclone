@@ -206,32 +206,30 @@ $blue: #1DA1F2;
 				}
 				.reply, .retweet, .like {
 					
-					button {
-						a {
-							color: inherit;
-							text-decoration: none;
-							.icon-container, .text-container {
-								font-weight: bold;
-							}
-							.icon-container, .text-container
-							.icon-container {
-								i {
-									font-size: 16px;
-									margin-right: .5em;
-								}
-							}
-							.text-container {
-								span {
-									font-size: 14px;
-								}
+					a {
+						color: inherit;
+						text-decoration: none;
+						.icon-container, .text-container {
+							font-weight: bold;
+						}
+						.icon-container, .text-container
+						.icon-container {
+							i {
+								font-size: 16px;
+								margin-right: .5em;
 							}
 						}
-						.liked {
-							color: #E65252;
+						.text-container {
+							span {
+								font-size: 14px;
+							}
 						}
-						.retweet-it {
-							color: #2EB145;
-						}
+					}
+					.liked {
+						color: #E65252;
+					}
+					.retweet-it {
+						color: #2EB145;
 					}
 				}
 				.reply .btn-action:hover {

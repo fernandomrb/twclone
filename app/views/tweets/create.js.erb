@@ -1,7 +1,8 @@
-if($("#modal-tweet").is(':visible')) {
-	$("#modal-tweet").modal("toggle");
-}
+
 <% if @tweet.persisted? %>
+		if($("#modal-tweet").is(':visible')) {
+			$("#modal-tweet").modal("toggle");
+		}
     <% if @tweet.parent_id.nil? %>
         $(".new-tweet .tweet-area").val("");
         $(".tweets").prepend("<%= j render @tweet %>");
@@ -9,4 +10,6 @@ if($("#modal-tweet").is(':visible')) {
         $(".reply-form .tweet-area").val("");
         $(".replies").prepend("<%= j render @tweet, tweet: @tweet %>");
     <% end %>
+<% else %>
+		$("#modal-tweet .modal-body form").replaceWith("<%= j render 'form' %>");
 <% end %>

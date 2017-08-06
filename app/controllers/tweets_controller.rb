@@ -29,7 +29,7 @@ class TweetsController < ApplicationController
       else
         format.json { render json: @tweet.errors.full_messages, 
                            status: :unprocessable_entity }
-        format.js { flash.now[:info] = "Your reply could not be send." }
+        format.js
       end
     end
 

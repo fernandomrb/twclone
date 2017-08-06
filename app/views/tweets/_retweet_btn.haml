@@ -1,12 +1,12 @@
 - if current_user.retweet_it?(tweet)
-	= link_to destroy_retweet_path(tweet), class: "retweet-it", method: :delete, remote: true do
+	= link_to destroy_retweet_path(tweet), class: "retweet-it btn btn-action", method: :delete, remote: true do
 		.icon-container
 			%i{ class: "fa fa-retweet", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Undo retweet" }
 		.text-container
 		.action-count
 			%span= tweet.retweets.size
 - else
-	= link_to new_retweet_path(tweet.id), data: { :toggle => "modal", :target => "#modal-tweet", remote: true } do
+	= link_to new_retweet_path(tweet.id), class: "btn btn-action", data: { :toggle => "modal", :target => "#modal-tweet", remote: true } do
 		.icon-container
 			%i{ class: "fa fa-retweet", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Retweet" }
 		.text-container
