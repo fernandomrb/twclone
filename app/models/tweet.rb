@@ -10,8 +10,11 @@ class Tweet < ApplicationRecord
 	scope :of_followed_users, -> (user) {where(user_id: user.id).or(Tweet.where(user_id: user.following)) }
 	
 	def get_src_tweet
-		return nil if self.src_tweet.nil?
 		Tweet.find(self.src_tweet.id)	
+	end
+
+	def has_src_tweet?
+		self.src_tweet != nil
 	end
 
 end

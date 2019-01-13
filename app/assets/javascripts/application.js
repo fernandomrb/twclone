@@ -69,6 +69,17 @@ $(document).on('turbolinks:load', function() {
 		tweetLength();
 		$(".modal-body .tweet-area").attr('rows', '2');
 	});
+	$(document).on("focus","#tweet_body",function(e){
+		$(this).attr('rows', '3');
+		$(".form-group .pull-right").show();
+		tweetLength();
+	});
+	// $("#modal-tweet #tweet_body").focus(function(e) {
+	// 	$(this).attr('rows', '3');
+	// 	$(".form-group .pull-right").show();
+	// 	tweetLength();
+	// });
+
 	$(document).ajaxError(function(event,xhr,options,exc) {
 	    
 	    var errors = JSON.parse(xhr.responseText);

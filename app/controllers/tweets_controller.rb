@@ -71,6 +71,10 @@ class TweetsController < ApplicationController
 
   def show
     @tweets = @tweet.replies
+    respond_to do |format|
+      format.html
+      format.js { render layout: "show" }
+    end
   end
 
   def update
@@ -90,9 +94,10 @@ class TweetsController < ApplicationController
 
   def like
     if @tweet.like_by current_user
-      if current_user.retweet_it?(@tweet)
-        @retweet = @tweet.retweets.find_by(user_id: current_user)
-      end
+      # if current_user.retweet_it?(@tweet)
+      #   @retweet = @tweet.retweets.find_by(user_id: current_user)
+      # end
+      @retweet = @tweet.get_src_tweet if @tweet.has_src_tweet?
       respond_to do |format|
         format.json { head :no_content }
         format.js
