@@ -14,5 +14,9 @@ class ApplicationController < ActionController::Base
 	    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password,
 	      :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar,
 	      :cover, :cover_cache, :remove_cover, :name, :bio) }
-	  end
+		end
+		
+		def send_notification(recipient, action, notifiable)
+			Notification.create(recipient: recipient, actor: current_user, action: action, notifiable: notifiable)
+		end
 end

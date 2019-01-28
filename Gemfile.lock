@@ -118,6 +118,9 @@ GEM
     execjs (2.7.0)
     factory_bot (4.11.1)
       activesupport (>= 3.0.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
+      railties (>= 3.0.0)
     ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
@@ -284,7 +287,7 @@ DEPENDENCIES
   cucumber-rails!
   database_cleaner
   devise!
-  factory_bot (~> 4.11, >= 4.11.1)
+  factory_bot_rails (~> 4.11, >= 4.11.1)
   font-awesome-rails (~> 4.7, >= 4.7.0.2)
   haml (~> 5.0, >= 5.0.1)
   jbuilder (~> 2.5)

@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   post '/users/:username/follow_user', to: "relationships#follow_user", as: :follow_user
   post '/users/:username/unfollow_user', to: "relationships#unfollow_user", as: :unfollow_user
   
+  get "/notifications", to: "notifications#index", as: :notification
 end

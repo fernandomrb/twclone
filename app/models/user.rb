@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_relationships, source: :following
 
+  has_many :notifications, foreign_key: "recipient_id"
+
   
   validates :name, presence: true, length: { maximum: 20 }
   validates :username, presence: true, length: { in: 5..15 }, format: { with: /\A[a-zA-Z0-9]+\Z/ }, uniqueness: true
@@ -42,5 +44,9 @@ class User < ApplicationRecord
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
     where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
+  end
+
+  def has_notifications?
+    self.notifications.any?
   end
 end

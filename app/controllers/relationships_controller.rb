@@ -2,7 +2,9 @@ class RelationshipsController < ApplicationController
 	before_action :set_user
 
   def follow_user
-  	if current_user.follow(@user.id)
+      relationship = current_user.follow(@user.id)
+	  if relationship
+			send_notification(@user, "Follow you", relationship)
 			respond_to do |format|
 				format.json { head :no_content }
 				format.js
@@ -11,7 +13,8 @@ class RelationshipsController < ApplicationController
   end
 
   def unfollow_user
-  	if current_user.unfollow(@user.id)
+	  if current_user.unfollow(@user.id)
+			Notification.find_by(recipient: @user, actor: current_user, notifiable_type: "Follow").destroy
 			respond_to do |format|
 				format.json { head :no_content }
 				format.js
