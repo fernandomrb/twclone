@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
 		end
 		
 		def send_notification(recipient, action, notifiable)
-			Notification.create(recipient: recipient, actor: current_user, action: action, notifiable: notifiable)
+			notification = Notification.create(recipient: recipient, actor: current_user, action: action, notifiable: notifiable)
 		end
 end

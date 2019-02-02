@@ -27,26 +27,8 @@
     .parent
       %small 
         In response to 
-        = link_to "@#{ tweet.user.username }", profile_user_path(tweet.user)
+        = link_to "@#{ tweet.parent.user.username }", profile_user_path(tweet.user)
   .body
     %p= tweet.body
     - unless action_name == "new"
-      .footer
-        .actions.row
-          .reply.col-xs-4
-            %button{ class: "btn btn-action"}
-              = link_to tweet_path(tweet), data: { :toggle => "#modal", :target => "#modal-tweet" }, remote: true  do
-                .icon-container
-                  %i{ class: "fa fa-reply", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Reply" }
-                .text-container
-                  .action-count
-                    %span= tweet.replies.size
-          .retweet.col-xs-4
-            %button{ class: "btn btn-action" }
-              = render "tweets/retweet_btn", tweet: tweet
-          .like.col-xs-4
-            %button{ class: "btn btn-action " }
-              - if current_user.voted_for? tweet
-                = render "/tweets/dislike_btn", tweet: tweet
-              - else
-                = render "/tweets/like_btn", tweet: tweet
+      = render "tweets/tweet_footer", tweet: tweet

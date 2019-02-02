@@ -7,6 +7,8 @@
     = link_to notification_path do
       %i.fa.fa-bell
       Notifications
+      %small#notification-counter.pull-right
+        = @notifications.count if @notifications.any?
   %li
     = link_to "#" do
       %i.fa.fa-envelope

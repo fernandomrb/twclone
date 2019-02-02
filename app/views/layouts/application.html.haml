@@ -4,6 +4,7 @@
     %title twitter clone
     = csrf_meta_tags
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    = action_cable_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
@@ -25,7 +26,6 @@
             = render "partials/guests_nav"
 
           = render "partials/nav_form" unless @disabled_search
-
     - flash.each do |key, value|
       %div{:class => "alert alert-#{key} alert-dismissible"}
         = value
