@@ -34,7 +34,7 @@ gem 'redis', '~> 3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'bootstrap-sass', '~> 3.4'
 gem 'devise', :git => 'https://github.com/plataformatec/devise'
 gem 'haml', '~> 5.0', '>= 5.0.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'

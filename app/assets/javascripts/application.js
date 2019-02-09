@@ -12,13 +12,17 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require jquery
+//= require jquery3
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require_tree ./channels
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
+
+	if (parseInt($("#notification-counter").text()) === 0) {
+		$("#notification-counter").addClass("hide");
+	} 
 
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip()
@@ -75,11 +79,6 @@ $(document).on('turbolinks:load', function() {
 		$(".form-group .pull-right").show();
 		tweetLength();
 	});
-	// $("#modal-tweet #tweet_body").focus(function(e) {
-	// 	$(this).attr('rows', '3');
-	// 	$(".form-group .pull-right").show();
-	// 	tweetLength();
-	// });
 
 	$(document).ajaxError(function(event,xhr,options,exc) {
 	    
@@ -92,6 +91,16 @@ $(document).on('turbolinks:load', function() {
 	    er+="</ul>"
 	    $("#error_explanation").html(er);
 	       
+	});
+
+	$("#notification-counter").on("DOMSubtreeModified", function() {
+		val = this.innerText;
+		if (parseInt(val) === 0) {
+			this.classList.add("hide");
+		} else {
+			this.classList.remove("hide");
+		}
+
 	});
 
 });

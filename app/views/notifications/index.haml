@@ -1,10 +1,7 @@
 .container
-    .notifications
+    .notifications.col-md-6.col-md-offset-3
+        %h4 All
         - if @notifications.any?
-            - @notifications.each do |notification|
-                .notification
-                    %p
-                        %span= notification.actor.username
-                        = notification.notifiable_type == "Tweet" ? "has #{notification.action} your tweet" : "#{notification.action} you"
+            = render @notifications               
         - else
             %h2 No tienes notificaciones

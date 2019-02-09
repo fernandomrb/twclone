@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
 		end
 		
 		def send_notification(recipient, action, notifiable)
-			notification = Notification.create(recipient: recipient, actor: current_user, action: action, notifiable: notifiable)
+			Notification.create(recipient: recipient, actor: current_user, action: action, notifiable: notifiable)
+		end
+
+		def notifications_count
+			Notification.where(recipient: current_user).unread.count
 		end
 end

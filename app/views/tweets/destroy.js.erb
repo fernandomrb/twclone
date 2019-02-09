@@ -1,1 +1,4 @@
 $("#tweet_<%= @tweet.id %>").fadeOut("slow");
+<% if @tweet.parent %>
+    $("#tweet_<%= @tweet.parent.id %> .footer .actions .reply .action-count span").text("<%= @tweet.parent.replies.count %>")
+<% end %>

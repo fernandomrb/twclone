@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
 
-  before_action :set_tweet, only: [:edit, :update, :show, :destroy, :like, :dislike, :reply, :retweet, :destroy_retweet]
+  before_action :set_tweet, only: [:edit, :update, :show, :destroy, :like, :dislike, :reply, :destroy_retweet]
   before_action :authenticate_user!, except: [:show]
   
   include TweetsHelper
@@ -8,14 +8,15 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.of_followed_users(current_user).order("created_at DESC")
     @tweet = Tweet.new
-    @notifications = current_user.notifications
+    @notifications_count = notifications_count
   end
 
   def new
     @tweet = Tweet.new
-    if params[:id]
-      @src_tweet = Tweet.find(params[:id])
-      @retweet = true
+    if params[:src_tweet]
+      @src_tweet = Tweet.find(params[:src_tweet])
+    elsif params[:parent_id]
+      @parent = Tweet.find(params[:parent_id])
     end
   end
 
@@ -37,16 +38,11 @@ class TweetsController < ApplicationController
 
   end
   
-  def reply
-    respond_to do |format|
-      format.js
-    end
-  end
-  
   def retweet
+    @tweet = Tweet.find(params[:src_tweet])
     @retweet = current_user.tweets.new(tweet_params)
     @retweet.src_tweet = @tweet
-    @retweet.body = @tweet.body
+    @retweet.body = @tweet.quote.present? ? @tweet.quote : @tweet.body
     respond_to do |format|
       if @retweet.save
         send_notification(@tweet.user, "retweet", @tweet) unless current_user == @tweet.user
@@ -58,10 +54,10 @@ class TweetsController < ApplicationController
   end
   
   def destroy_retweet
-    @retweet = @tweet.retweets.find_by(user_id: current_user)
+    @retweet = @tweet.retweets.find_by(user: current_user)
     respond_to do |format|
       if @retweet.destroy
-        Notification.find_by(recipient: @user, actor: current_user, action: "retweet").destroy
+        Notification.find_by(recipient: @tweet.user, actor: current_user, action: "retweet").destroy unless @tweet.user == current_user
         format.html { flash[:success] = "Your retweet has been deleted." }
         format.json { head :no_content }
         format.js
@@ -109,7 +105,7 @@ class TweetsController < ApplicationController
 
   def dislike
     if @tweet.unliked_by current_user
-      Notification.find_by(recipient: @user, actor: current_user, action: "liked").destroy
+      Notification.find_by(recipient: @tweet.user, actor: current_user, action: "liked").destroy unless @tweet.user == current_user
       if current_user.retweet_it?(@tweet)
         @retweet = @tweet.retweets.find_by(user_id: current_user)
       end
@@ -122,7 +118,7 @@ class TweetsController < ApplicationController
 
   def destroy
     if @tweet.destroy 
-      Notification.find_by(recipient: @user, actor: current_user, action: "reply").destroy if @tweet.parent
+      Notification.find_by(recipient: @tweet.parent.user, actor: current_user, action: "reply").destroy if @tweet.parent && @tweet.parent.user != current_user
       respond_to do |format|
         format.json { head :no_content }
         format.js
@@ -136,7 +132,6 @@ class TweetsController < ApplicationController
     end
 
     def tweet_params
-      params.require(:tweet).permit(:body, :parent, :quote)
+      params.require(:tweet).permit(:body, :parent, :quote, :src_tweet)
     end
-
 end

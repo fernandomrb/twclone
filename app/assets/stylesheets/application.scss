@@ -18,7 +18,7 @@
 @import "font-awesome";
 @import "registration";
 @import "profiles";
-
+@import "notifications";
 $text_color: #909BA2;
 $blue: #1DA1F2;
 
@@ -58,6 +58,17 @@ textarea {
 			&:focus {
 				background-color: inherit;
 			}
+		}
+		#notification-counter {
+			background: $blue;
+			border-radius: 50%;
+			color: #fff;	
+			line-height: 10px;
+			margin-left: .5em;
+			padding: .4em;
+			font-size: .8em;
+			font-weight: bold;
+
 		}
 	}
 	.navbar-header {
@@ -187,12 +198,42 @@ textarea {
 .btn-primary {
 	color: #fff;
 }
+#toast {
+	background: #fff;
+	border: 1px solid #eee;
+	position: fixed;
+	padding: 1em;
+	bottom: 5em;
+	left: 30%;
+	overflow: hidden;
+	width: 40%;
+	visibility: hidden;
+	z-index: 100;
+	.toast-header {
+		border-bottom: 1px solid #eee;
+		padding-bottom: .5em;
+		img {
+			width: 30px;
+			margin-right: .5em;
+		}
+	}
+	.toast-body {
+		margin-top: .5em;
+	}
+}
+#toast.show {
+	visibility: visible;
+}
 
 
 @media screen and (min-width: 600px) {
 	.panel {
 		max-width: 40%;
 		margin: 2em auto;
+	}
+	#toast {
+		width: 30%;
+		left: 35%;
 	}
 }
 @media screen and (min-width: 768px) {
@@ -246,8 +287,11 @@ textarea {
 			}
 		}
 	}
+	#toast { 
+		width: 250px;
+		left: 2em;
+	}
 }
-
 @media screen and (min-width: 1000px) {
 	.navbar {
 		.navbar-form {

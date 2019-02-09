@@ -6,4 +6,5 @@ module TweetsHelper
     def get_src_tweet(tweet)
        @src_tweet = tweet.src_tweet
     end
+
 end

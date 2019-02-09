@@ -2,12 +2,12 @@
     .actions.row
         .reply.col-xs-4
             %button{ class: "btn btn-action"}
-                = link_to tweet_path(tweet), data: { :toggle => "#modal", :target => "#modal-tweet" }, remote: true  do
+                = link_to reply_tweet_path(tweet), data: { :toggle => "modal", :target => "#modal-tweet", remote: true} do
                     .icon-container
                         %i{ class: "fa fa-reply", "data-toggle" => "tooltip", "data-placement" =>"top", :title => "Reply" }
                     .text-container
                         .action-count
-                        %span= tweet.replies.size
+                            %span= tweet.replies.count
         .retweet.col-xs-4
             %button{ class: "btn btn-action" }
                 = render "tweets/retweet_btn", tweet: tweet

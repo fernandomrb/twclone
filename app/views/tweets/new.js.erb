@@ -1,7 +1,9 @@
-
-<% if @retweet %>
+<% if @src_tweet %>
     $("#modal-tweet .modal-title").text("Quote tweet");
-    $(".modal-body").html("<%= j render "retweet_form" %>");
+    $(".modal-body").html("<%= j render 'retweet_form' %>");
+<% elsif @parent %>
+    $("#modal-tweet .modal-title").text("In response to <%= @parent.user.username %>");
+    $(".modal-body").html("<%= j render "reply_form" %>");
 <% else %>
     $("#modal-tweet .modal-title").text("New tweet");
     $(".modal-body").html("<%= j render "form" %>");

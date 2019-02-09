@@ -4,9 +4,9 @@ if($("#modal-tweet").is(':visible')) {
 <% if @tweet.persisted? %>
     <% if @tweet.parent_id.nil? %>
         $(".new-tweet .tweet-area").val("");
-        $(".tweets").prepend("<%= j render @tweet %>");
     <% else %>
         $(".reply-form .tweet-area").val("");
-        $(".replies").prepend("<%= j render @tweet, tweet: @tweet %>");
+        $("#tweet_<%= @tweet.parent.id %> .footer .actions .reply .action-count span").text("<%= @tweet.parent.replies.count %>")
     <% end %>
+    $(".tweets").prepend("<%= j render @tweet %>");
 <% end %>

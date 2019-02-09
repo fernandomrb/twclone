@@ -1,0 +1,10 @@
+.notification
+    .account
+        = link_to profile_user_path(notification.actor) do
+            .user-avatar
+                = image_tag notification.actor.avatar
+    .action
+        %p
+            %span= notification.actor.name
+            = notification_message(notification)
+            %small= time_ago_in_words(notification.created_at)
