@@ -1,0 +1,5 @@
+.conversation
+    = link_to conversation_path(conversation) do
+        %p= participating_user(conversation).name
+        %hr
+        %small= conversation.personal_messages.first.body if conversation.personal_messages.any?

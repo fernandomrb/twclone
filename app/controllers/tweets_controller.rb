@@ -73,7 +73,7 @@ class TweetsController < ApplicationController
     @tweets = @tweet.replies
     respond_to do |format|
       format.html
-      format.js { render layout: "show" }
+      format.js
     end
   end
 

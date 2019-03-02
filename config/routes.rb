@@ -7,11 +7,15 @@ Rails.application.routes.draw do
     root to: "main#index"
   end
   devise_for :users
+  resources :users, only: [:index]
   devise_scope :user do
     post "/users/pre_register", to: "registrations#preRegister", as: :pre_registration
   end
   
   resources :tweets
+  resources :conversations do
+    resources :personal_messages, only: [:create]
+  end
   get "/users/:id", to: "profiles#show", as: :profile_user
   put "/tweets/:id/like", to: "tweets#like", as: :like_tweet
   put "/tweets/:id/dislike", to: "tweets#dislike", as: :dislike_tweet

@@ -1,13 +1,12 @@
-= render "tweets/tweet", tweet: @parent
 .reply-form
   .jumbotron
     .user-avatar
       = image_tag current_user.avatar_url(:thumb), class: "img-responsive img-rounded"
-    = form_tag tweets_path(parent: @parent), remote: true, html: { multipart: true} do |f|
+    = form_tag tweets_path(parent: parent), remote: true, html: { multipart: true} do |f|
       #errors_explanation.text-danger.bg-danger
     
       .form-group
-        = text_area_tag "tweet[body]", @parent.user != current_user ? "@#{ @parent.user.username }": nil , class: "form-control tweet-area", placeholder: "tweet something", maxlength: "140", rows: "1"
+        = text_area_tag "tweet[body]", parent.user != current_user ? "@#{ parent.user.username }": nil , class: "form-control tweet-area", placeholder: "tweet something", maxlength: "140", rows: "1"
       .form-group
         .pull-right
           %span.remaining

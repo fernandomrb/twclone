@@ -27,7 +27,7 @@
     .parent
       %small 
         In response to 
-        = link_to "@#{ tweet.parent.user.username }", profile_user_path(tweet.user)
+        = link_to "@#{ tweet.parent.user.username }", profile_user_path(tweet.parent.user)
   .body
     %p= tweet.body
     - unless action_name == "new"

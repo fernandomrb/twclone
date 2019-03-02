@@ -132,10 +132,23 @@ $blue: #1DA1F2;
 	list-style-type: none;
 	background: #fff;
 	border: 1px solid #eee;
+	position: relative;
 	
+	.overlay {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+	}
 	.tweet-actionable {
 		padding: 1em;
-		cursor: pointer;
+		position: relative;
+		pointer-events: none;
+		z-index: 1;
+		a, .dropdown {
+			pointer-events: all;
+		}
 	}
 	.container-fluid {
 		margin-left: 50px;
@@ -182,6 +195,7 @@ $blue: #1DA1F2;
 				position: absolute;
 				right: 0;
 				top: 0;
+				z-index: 1000;
 				#dropdownMenu1 {
 					font-size: 12px;
 					&:hover {

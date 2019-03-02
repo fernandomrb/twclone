@@ -1,0 +1,6 @@
+%li.user{ data: { username: user.username } }
+    .avatar
+        = image_tag user.avatar
+    .fullname
+        %strong= user.name
+        %small= user.username

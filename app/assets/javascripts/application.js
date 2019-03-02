@@ -15,6 +15,8 @@
 //= require jquery3
 //= require jquery_ujs
 //= require bootstrap
+//= require underscore
+//= require select2
 //= require_tree ./channels
 //= require_tree .
 

@@ -1,6 +1,14 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  include PgSearch
+  
+  pg_search_scope :search_by_name_and_username, against: [:name, :username], 
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+
   mount_uploader :avatar, AvatarUploader
   mount_uploader :cover, CoverUploader
 
@@ -19,7 +27,11 @@ class User < ApplicationRecord
   has_many :following, through: :following_relationships, source: :following
 
   has_many :notifications, foreign_key: "recipient_id"
+  
+  has_many :authored_conversations, class_name: "Conversation", foreign_key: "author_id"
+  has_many :received_conversations, class_name: "Conversation", foreign_key: "receiver_id"
 
+  has_many :personal_messages, dependent: :destroy
   
   validates :name, presence: true, length: { maximum: 20 }
   validates :username, presence: true, length: { in: 5..15 }, format: { with: /\A[a-zA-Z0-9]+\Z/ }, uniqueness: true

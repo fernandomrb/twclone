@@ -42,6 +42,9 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 gem 'carrierwave', '~> 1.1'
 gem 'mini_magick'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'pg_search', '~> 2.1', '>= 2.1.4'
+gem 'select2-rails', '~> 4.0', '>= 4.0.3'
+gem 'underscore-rails', '~> 1.8', '>= 1.8.3'
 
 
 group :development, :test do

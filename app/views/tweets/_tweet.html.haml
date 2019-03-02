@@ -1,4 +1,5 @@
 %li.tweet{ id: "tweet_#{ tweet.id }" }
+	= link_to "", (tweet.has_src_tweet? ? tweet_path(tweet.src_tweet_id) : tweet_path(tweet.id)), class: "overlay", remote: true
 	.tweet-actionable{ "data-url": tweet_path(tweet) }
 		.container-fluid
 			- if tweet.has_src_tweet?

@@ -11,5 +11,5 @@ class NotificationsController < ApplicationController
 
     def mark_as_read(notifications)
         notifications.update_all(read_at: Time.now)
-    end
+    end 
 end
