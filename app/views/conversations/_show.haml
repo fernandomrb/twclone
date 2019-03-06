@@ -1,0 +1,20 @@
+.PM_conversation.top-space
+    - user = participating_user(conversation)
+    .header
+        = link_to profile_user_path(user) do
+            .user-avatar
+                = image_tag user.avatar
+            .username
+                %p= user.name
+        .action
+            = link_to conversation_path(conversation), method: :delete, data: { confirm: "Are you sure?" } do
+                %i.fa.fa-trash
+    .PM_conversation_container
+        = render partial: "personal_message", collection: conversation.personal_messages, as: :personal_message || "There are no messages."
+.PM_composer
+    = form_for [conversation, personal_message], html: { multipart: true }, remote: true do |f|
+        .form-group
+            = f.text_area :body, class: "form-control", rows: 1
+        .form-group
+            .pull-right
+                = f.submit "send", class: "btn btn-primary"

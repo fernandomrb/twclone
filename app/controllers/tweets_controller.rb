@@ -9,6 +9,7 @@ class TweetsController < ApplicationController
     @tweets = Tweet.of_followed_users(current_user).order("created_at DESC")
     @tweet = Tweet.new
     @notifications_count = notifications_count
+    @messages_count = messages_count
   end
 
   def new

@@ -1,13 +1,1 @@
-.PM_conversation
-    .header
-        %h5= participating_user(@conversation).name
-        %small= participating_user(@conversation).username
-    .PM_conversation_container
-        = render partial: "personal_message", collection: @conversation.personal_messages, as: :personal_message || "There are no messages."
-.PM_composer
-    = form_for [@conversation, @personal_message], html: { multipart: true } do |f|
-        .form-group
-            = f.text_area :body, class: "form-control", rows: 1
-        .form-group
-            .pull-right
-                = f.submit "send", class: "btn btn-primary"
+= render "show", conversation: @conversation, personal_message: @personal_message

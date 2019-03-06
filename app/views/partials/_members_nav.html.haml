@@ -10,9 +10,11 @@
       %small#notification-counter.pull-right
         = @notifications_count
   %li
-    = link_to "#" do
+    = link_to conversations_path, data: { toggle: "modal", target: ".modal" }, remote: true do
       %i.fa.fa-envelope
       Messages
+      %small#messages-counter.pull-right
+        = messages_count
 
 %ul.nav.navbar-nav.navbar-right
   %li
@@ -31,6 +33,6 @@
       %li
         = link_to "Sign out", destroy_user_session_path, method: :delete
   %li.btn-tweet
-    = link_to new_tweet_path, class: "btn btn-primary", data: { toggle: "modal", target: "#modal-tweet" }, remote: true do
+    = link_to new_tweet_path, class: "btn btn-primary", data: { toggle: "modal", target: ".modal" }, remote: true do
       %i.fa.fa-pencil 
       Tweet

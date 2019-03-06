@@ -16,7 +16,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require underscore
-//= require select2
 //= require_tree ./channels
 //= require_tree .
 
@@ -50,9 +49,15 @@ $(document).on('turbolinks:load', function() {
 		$(".form-group .pull-right").hide();
 	} 
 
-	function tweetLength() {
-		var maxLength = $(".tweet-area").attr('maxLength');
-		$(".tweet-area").on("input", function(event) {
+	function tweetLength(modal = false) {
+		var tweet_area;
+		if (modal) {
+			tweet_area = $(".modal .tweet-area")
+		} else {
+			tweet_area = $(".tweet-area")
+		}
+		var maxLength = tweet_area.attr('maxLength');
+		 tweet_area.on("input", function(event) {
 			var length = $(this).val().length;
 			var length = maxLength - length;
 			var span = $(".remaining");
@@ -72,9 +77,11 @@ $(document).on('turbolinks:load', function() {
 		}
 	});
 	
-	$("#modal-tweet").on("shown.bs.modal", function() {
-		tweetLength();
-		$(".modal-body .tweet-area").attr('rows', '2');
+	$(".modal").on("shown.bs.modal", function() {
+		if(document.querySelector(".tweet-area")) {
+			tweetLength(true);
+			$(".modal-body .tweet-area").attr('rows', '2');
+		}
 	});
 	$(document).on("focus","#tweet_body",function(e){
 		$(this).attr('rows', '3');
@@ -96,13 +103,19 @@ $(document).on('turbolinks:load', function() {
 	});
 
 	$("#notification-counter").on("DOMSubtreeModified", function() {
-		val = this.innerText;
-		if (parseInt(val) === 0) {
-			this.classList.add("hide");
-		} else {
-			this.classList.remove("hide");
-		}
-
+		toggleCounter(this);
+	});
+	$("#messages-counter").on("DOMSubtreeModified", function() {
+		toggleCounter(this);
 	});
 
+	var toggleCounter = function(ele) {
+		val = ele.innerText;
+		if (parseInt(val) === 0) {
+			ele.classList.add("hide");
+		} else {
+			ele.classList.remove("hide");
+		}
+	};
+	
 });

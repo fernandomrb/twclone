@@ -1,5 +1,5 @@
-if($("#modal-tweet").is(':visible')) {
-	$("#modal-tweet").modal("toggle"); 
+if($(".modal").is(':visible')) {
+	$(".modal").modal("toggle"); 
 }
 <% if @tweet.persisted? %>
     <% if @tweet.parent_id.nil? %>

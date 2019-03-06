@@ -1,11 +1,1 @@
-.new-conversation.top-space
-    .search_user
-        = form_for @conversation do |f|
-            .form-group
-                = f.hidden_field "receiver_id"
-                = text_field_tag "to", nil, placeholder: "enter a name", autocomplete: "off", class: "form-control", autofocus: true, require: true
-            .form-group
-                = f.submit "Next", class: "btn btn-primary"
-    %ul.people
-        - current_user.authored_conversations.last(3).each do |conversation|
-            = render "conversations/user", user: conversation.receiver
+= render "new", conversation: @conversation

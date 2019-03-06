@@ -19,7 +19,7 @@
 @import "registration";
 @import "profiles";
 @import "notifications";
-@import 'select2';
+@import 'conversations';
 $text_color: #909BA2;
 $blue: #1DA1F2;
 
@@ -61,6 +61,17 @@ textarea {
 			}
 		}
 		#notification-counter {
+			background: $blue;
+			border-radius: 50%;
+			color: #fff;	
+			line-height: 10px;
+			margin-left: .5em;
+			padding: .4em;
+			font-size: .8em;
+			font-weight: bold;
+
+		}
+		#messages-counter {
 			background: $blue;
 			border-radius: 50%;
 			color: #fff;	
