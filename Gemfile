@@ -34,7 +34,7 @@ gem 'redis', '~> 3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'bootstrap-sass', '~> 3.4'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'devise', :git => 'https://github.com/plataformatec/devise'
 gem 'haml', '~> 5.0', '>= 5.0.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
@@ -43,8 +43,7 @@ gem 'carrierwave', '~> 1.1'
 gem 'mini_magick'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'pg_search', '~> 2.1', '>= 2.1.4'
-gem 'select2-rails', '~> 4.0', '>= 4.0.3'
-gem 'underscore-rails', '~> 1.8', '>= 1.8.3'
+gem 'tribute', '~> 3.6'
 
 
 group :development, :test do

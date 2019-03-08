@@ -15,7 +15,7 @@
 //= require jquery3
 //= require jquery_ujs
 //= require bootstrap
-//= require underscore
+//= require tribute
 //= require_tree ./channels
 //= require_tree .
 
@@ -117,5 +117,39 @@ $(document).on('turbolinks:load', function() {
 			ele.classList.remove("hide");
 		}
 	};
+
+
+	var tribute = new Tribute({
+		values: function (text, cb) {
+			remoteSearch(text, users => cb(users));
+		},
+		lookup: function (person, mentionText) {
+			return person.name + " <small>@" + person.username + "</small>";
+		},
+		fillAttr: 'username',
+		menuItemTemplate: function (item) {
+			return '<img class ="user-avatar" src="'+item.original.avatar+'">' + item.string; // + '<small>@'+ item.original.username +'</small>';
+		}
+	});
+
+	tribute.attach(document.querySelectorAll('.tweet-area'));
+
+	function remoteSearch(text, cb) {
+		var URL = '/users.json';
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function ()
+		{
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					var data = JSON.parse(xhr.responseText);
+					cb(data);
+				} else if (xhr.status === 403) {
+					cb([]);
+				}
+			}
+		};
+		xhr.open("GET", URL + "?term=" + text, true);
+		xhr.send();
+	}
 	
 });

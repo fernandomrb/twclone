@@ -29,6 +29,6 @@
         In response to 
         = link_to "@#{ tweet.parent.user.username }", profile_user_path(tweet.parent.user)
   .body
-    %p= tweet.body
+    %p= linked_users(tweet.body)
     - unless action_name == "new"
       = render "tweets/tweet_footer", tweet: tweet
