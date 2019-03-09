@@ -24,4 +24,8 @@ class ApplicationController < ActionController::Base
 		def notifications_count
 			Notification.where(recipient: current_user).unread.count
 		end
+
+		def not_found
+			raise ActionController::RoutingError.new('Not Found')
+		end
 end

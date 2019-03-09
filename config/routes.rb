@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :personal_messages, only: [:create]
   end
-  get "/users/:id", to: "profiles#show", as: :profile_user
+  
   put "/tweets/:id/like", to: "tweets#like", as: :like_tweet
   put "/tweets/:id/dislike", to: "tweets#dislike", as: :dislike_tweet
   
@@ -31,4 +31,6 @@ Rails.application.routes.draw do
   get "/notifications", to: "notifications#index", as: :notification
 
   mount ActionCable.server => "/cable"
+
+  get "/users/:username", to: "profiles#show", as: :profile_user, constraint: { username: /[\w]+/ }
 end
