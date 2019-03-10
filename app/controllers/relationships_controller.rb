@@ -4,7 +4,7 @@ class RelationshipsController < ApplicationController
   def follow_user
       relationship = current_user.follow(@user.id)
 	  if relationship
-			send_notification(@user, "Follow you", relationship)
+			Notification.send_notification(@user, current_user, "follows", relationship)
 			respond_to do |format|
 				format.json { head :no_content }
 				format.js

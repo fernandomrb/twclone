@@ -1,4 +1,5 @@
 class Tweet < ApplicationRecord
+	after_save :notify_mentioned_users
 	belongs_to :user
 	belongs_to :parent, class_name: "Tweet", optional: true
 	has_many :replies, foreign_key: :parent_id, class_name: "Tweet"
@@ -27,6 +28,14 @@ class Tweet < ApplicationRecord
 
 	def mentioned_users
     @mentioned_users ||= User.where(username: mentions)
+	end
+
+	protected
+
+	def notify_mentioned_users
+		mentioned_users.each do |mentioned_user|
+			Notification.send_notification(mentioned_user, user, "mentioned", self)
+		end
 	end
 
 end

@@ -3,7 +3,7 @@ class NotificationRelayJob < ApplicationJob
 
   def perform(notification)
     ActionCable.server.broadcast "notifications:#{notification.recipient_id}", 
-    message: notification.notifiable_type == "Tweet" ? "has #{notification.action} your tweet" : "follow you",
+    message: ["liked", "replied", "retweet"].include? notification.notifiable_type ? "has #{notification.action} your tweet" : "#{notification.action} you",
     user: notification.actor
     end
 end

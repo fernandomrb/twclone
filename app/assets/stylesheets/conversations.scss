@@ -14,7 +14,7 @@
     }
 }
 .modal {
-    .header {
+    .modal-header > .header, .modal-body > .header {
         display: flex;
         justify-content: space-between;
         .action {

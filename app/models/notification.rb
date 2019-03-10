@@ -12,4 +12,8 @@ class Notification < ApplicationRecord
     validates :notifiable_type, presence: true
 
     scope :unread, -> { where(read_at: nil)}
+
+    def self.send_notification(recipient, actor, action, notifiable)
+        Notification.create(recipient: recipient, actor: actor, action: action, notifiable: notifiable)
+    end
 end

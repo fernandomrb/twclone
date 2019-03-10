@@ -16,10 +16,6 @@ class ApplicationController < ActionController::Base
 	      :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar,
 	      :cover, :cover_cache, :remove_cover, :name, :bio) }
 		end
-		
-		def send_notification(recipient, action, notifiable)
-			Notification.create(recipient: recipient, actor: current_user, action: action, notifiable: notifiable)
-		end
 
 		def notifications_count
 			Notification.where(recipient: current_user).unread.count
