@@ -1,4 +1,9 @@
-%form.navbar-form.navbar-right
+-# %form.navbar-form.navbar-right
+-#   .form-group.has-feedback
+-#     %input.form-control{:placeholder => "Search on twittah", :type => "text"}
+-#     %i.fa.fa-search.form-control-feedback
+= form_tag "/search", method: :get, class: "navbar-form navbar-right" do
   .form-group.has-feedback
-    %input.form-control{:placeholder => "Search on twittah", :type => "text"}
+    = text_field_tag "q", nil, class: "form-control", placeholder: "Search on twclone"
     %i.fa.fa-search.form-control-feedback
+    

@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   
   get "/notifications", to: "notifications#index", as: :notification
 
+  get "/search", to: "main#search", as: :search
+
   mount ActionCable.server => "/cable"
 
   get "/users/:username", to: "profiles#show", as: :profile_user, constraint: { username: /[\w]+/ }

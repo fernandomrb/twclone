@@ -44,6 +44,7 @@ gem 'mini_magick'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'pg_search', '~> 2.1', '>= 2.1.4'
 gem 'tribute', '~> 3.6'
+gem 'searchkick', '~> 3.1', '>= 3.1.2'
 
 
 group :development, :test do

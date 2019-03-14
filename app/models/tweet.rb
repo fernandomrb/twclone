@@ -1,5 +1,7 @@
 class Tweet < ApplicationRecord
 	after_save :notify_mentioned_users
+
+	searchkick text_start: [:body]
 	belongs_to :user
 	belongs_to :parent, class_name: "Tweet", optional: true
 	has_many :replies, foreign_key: :parent_id, class_name: "Tweet"

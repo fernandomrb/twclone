@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   include PgSearch
-  
+  searchkick text_start: [:name, :username]
+
   pg_search_scope :search_by_name_and_username, against: [:name, :username], 
                   using: {
                     tsearch: { prefix: true }
@@ -61,4 +62,5 @@ class User < ApplicationRecord
   def has_notifications?
     self.notifications.any?
   end
+
 end
