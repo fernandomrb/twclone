@@ -6,7 +6,11 @@ class MainController < ApplicationController
 
 	def search
 		@query = params[:q] || "*"
-		@users = User.search(@query)
-		@tweets = Tweet.search(@query)
+		if params[:f]
+			@show_users = true 
+			@users = User.search(@query)
+		else
+			@tweets = Tweet.search(@query, order: { created_at: :desc })
+		end
 	end
 end

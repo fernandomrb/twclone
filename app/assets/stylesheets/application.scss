@@ -11,6 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  */
+$text_color: #909BA2;
+$blue: #1DA1F2;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "main";
@@ -21,8 +23,7 @@
 @import "notifications";
 @import 'conversations';
 @import "tribute";
-$text_color: #909BA2;
-$blue: #1DA1F2;
+
 
 body {
 	background-color: #F5F8FA;
@@ -36,24 +37,6 @@ textarea {
 .navbar {
 	background-color: #fff;
 	.navbar-nav {
-		.active {
-			a {
-				background-color: inherit;
-				border-bottom: 3px solid $blue;
-				&:before {
-					content: "\25CF";
-					font-size: 14px;
-					color: $blue;
-					position: absolute;
-					top: 2px;
-					left: 5px;
-				}
-				&:hover {
-					color: $blue;
-					background-color: inherit;
-				}
-			}
-		}
 		.open > a {
 			background-color: inherit;
 			color: inherit;
@@ -174,6 +157,24 @@ textarea {
 				color: $blue;
 				font-size: 12px;
 			}
+		}
+	}
+}
+.active {
+	a {
+		background-color: inherit;
+		border-bottom: 3px solid $blue;
+		&:before {
+			content: "\25CF";
+			font-size: 14px;
+			color: $blue;
+			position: absolute;
+			top: 2px;
+			left: 5px;
+		}
+		&:hover {
+			color: $blue;
+			background-color: inherit;
 		}
 	}
 }

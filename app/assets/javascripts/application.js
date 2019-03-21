@@ -151,5 +151,10 @@ $(document).on('turbolinks:load', function() {
 		xhr.open("GET", URL + "?term=" + text, true);
 		xhr.send();
 	}
+
+	$(".search-nav .navigation li").on("click", function() {
+		$(this).siblings().removeClass("active");
+		$(this).addClass("active");
+	});
 	
 });

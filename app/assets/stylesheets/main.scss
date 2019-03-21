@@ -53,3 +53,40 @@
 		}
 	}
 }
+.search-nav {
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	padding: 0;
+	.search-title {
+		background: $blue;
+		padding: 1em;
+		h4 {
+			color: #fff;
+			font-weight: bold;
+			margin: 0;
+		}
+	}
+	.navigation {
+		background: #fff;
+		padding: 0;
+		.container {
+			li {
+				display: inline-block;
+				margin-right: 1em;
+				a {
+					display: block;
+					color: $text_color;
+					padding: 1em;
+					&:hover {
+						text-decoration: none;
+						color: black;
+					}
+				}
+			}
+		}
+	}
+}
