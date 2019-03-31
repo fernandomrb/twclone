@@ -307,7 +307,6 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13.0)
   carrierwave (~> 1.1)
-  chromedriver-helper
   coffee-rails (~> 4.2)
   cucumber-rails!
   database_cleaner
@@ -339,8 +338,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-<<<<<<< HEAD
-   1.15.3
-=======
    1.17.1
->>>>>>> master

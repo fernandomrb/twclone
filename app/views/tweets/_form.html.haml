@@ -1,13 +1,7 @@
-= form_for @tweet, remote: true, html: { multipart: true } do |f|
-  - if @tweet.errors.any?
-    %ul.errors
-      - @tweet.errors.full_messages.each do |error|
-        %li.error.text-danger
-          = error
-
-  .form-group
-    = f.text_area :body, class: "form-control tweet-area", placeholder: "What's going on?", maxlength: "140", rows: "1" #, required: true
-  .form-group
-    .pull-right
-      %span.remaining
-      = f.submit "tweet", class: "btn btn-primary tweeting"
+= form_for @tweet, remote: true, html: { multipart: true} do |f|
+	.form-group
+		= f.text_area :body, class: "form-control tweet-area", placeholder: "What's going on?", maxlength: "140", rows: "1"
+	.form-group
+		.pull-right
+			%span.remaining
+			= f.submit "tweet", class: "btn btn-primary tweeting"

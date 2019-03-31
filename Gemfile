@@ -61,7 +61,6 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'cucumber-rails', :git => "https://github.com/cucumber/cucumber-rails"
-  gem 'chromedriver-helper'
 end
 
 group :development do
