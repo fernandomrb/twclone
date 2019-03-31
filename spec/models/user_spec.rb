@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-	let(:user) { FactoryGirl.build :user }
-	let(:invalid_user) { FactoryGirl.build :user, :invalid_user }
+	let(:user) { FactoryBot.build :user }
+	let(:invalid_user) { FactoryBot.build :user, :invalid_user }
 	
 	describe "ActiveModel validations" do
 		#Basic validations
@@ -28,9 +28,9 @@ RSpec.describe User, type: :model do
 	describe "Public instance methods" do
 		context "#retweet_it?" do
 
-			let(:user) { FactoryGirl.create(:user) }
-			let(:tweet) { FactoryGirl.create(:tweet) }
-			let(:retweet) { FactoryGirl.create(:tweet, user_id: user.id, src_tweet: tweet) }
+			let(:user) { FactoryBot.create(:user) }
+			let(:tweet) { FactoryBot.create(:tweet) }
+			let(:retweet) { FactoryBot.create(:tweet, user_id: user.id, src_tweet: tweet) }
 
 			it "should call the method" do
 				expect(user).to receive(:retweet_it?)

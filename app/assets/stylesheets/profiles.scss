@@ -3,6 +3,9 @@ $blue: #1DA1F2;
 .profile-page {
 	margin-bottom: 2em;
 	.profile-header {
+		width: 100vw;
+		position: relative;
+		left: calc(-1*(100vw - 100%) / 2);
 		.bar {
 			min-height: 150px;
 			.profile-nav {

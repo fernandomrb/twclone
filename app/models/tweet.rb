@@ -1,4 +1,8 @@
 class Tweet < ApplicationRecord
+	after_save :notify_mentioned_users
+	after_commit { TweetBroadcastJob.perform_later(self) }
+	
+	searchkick text_start: [:body]
 	belongs_to :user
 	belongs_to :parent, class_name: "Tweet", optional: true
 	has_many :replies, foreign_key: :parent_id, class_name: "Tweet"
@@ -10,8 +14,31 @@ class Tweet < ApplicationRecord
 	scope :of_followed_users, -> (user) {where(user_id: user.id).or(Tweet.where(user_id: user.following)) }
 	
 	def get_src_tweet
-		return nil if self.src_tweet.nil?
 		Tweet.find(self.src_tweet.id)	
+	end
+
+	def has_src_tweet?
+		self.src_tweet != nil
+	end
+
+	def mentions
+		@mentions ||= begin
+                    regex = /@([\w]+)/
+                    matches = body.scan(regex).flatten
+					        end
+		
+	end
+
+	def mentioned_users
+    @mentioned_users ||= User.where(username: mentions)
+	end
+
+	protected
+
+	def notify_mentioned_users
+		mentioned_users.each do |mentioned_user|
+			Notification.send_notification(mentioned_user, user, "mentioned", self)
+		end
 	end
 
 end

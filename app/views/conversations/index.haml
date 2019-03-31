@@ -1,0 +1,9 @@
+.conversations.top-space
+    .header
+        %h4 Personal Messages
+        .action
+            = link_to new_conversation_path, class: "btn btn-primary", remote: true do
+                New message
+                %i.fa.fa-comment
+    = render "index"
+    

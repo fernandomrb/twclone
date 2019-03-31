@@ -1,0 +1,3 @@
+.PM_container{ id: "pm_#{ personal_message.id }" }
+    %div{ class: "#{ personal_message.user == current_user ? 'right' : 'left' }" }
+        %p= personal_message.body

@@ -1,0 +1,18 @@
+- if conversation.personal_messages.any?
+    %li.conversation.list-group-item
+        = link_to conversation_path(conversation), remote: true do
+            - user = participating_user(conversation)
+            .header
+                .user-avatar
+                    = image_tag user.avatar
+                .username    
+                    %p
+                        = user.name
+                        %small= "@#{ user.username }"
+            .message
+                = "#{ conversation.personal_messages.first.user == user ? user.name : 'You' }:"
+                %small= conversation.personal_messages.first.body
+            - if conversation.personal_messages.unread(current_user).any?    
+                .pull-right
+                    %span.unread-messages-count
+                        = messages_count

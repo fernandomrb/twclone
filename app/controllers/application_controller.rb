@@ -4,6 +4,15 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+	include ConversationsHelper
+
+	def self.renderer_with_signed_in_user(user)
+    ActionController::Renderer::RACK_KEY_TRANSLATION['warden'] ||= 'warden'
+    proxy = Warden::Proxy.new({}, Warden::Manager.new({})).tap { |i|
+      i.set_user(user, scope: :user, store: false, run_callbacks: false)
+    }
+    renderer.new('warden' => proxy)
+  end
 
   protected
 
@@ -14,5 +23,14 @@ class ApplicationController < ActionController::Base
 	    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:username, :email, :password,
 	      :password_confirmation, :current_password, :avatar, :avatar_cache, :remove_avatar,
 	      :cover, :cover_cache, :remove_cover, :name, :bio) }
-	  end
+		end
+
+		def notifications_count
+			Notification.where(recipient: current_user).unread.count
+		end
+
+		def not_found
+			raise ActionController::RoutingError.new('Not Found')
+		end
+
 end

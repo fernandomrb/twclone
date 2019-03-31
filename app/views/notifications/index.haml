@@ -1,0 +1,7 @@
+.container
+    .notifications.col-md-6.col-md-offset-3
+        %h4 All
+        - if @notifications.any?
+            = render @notifications               
+        - else
+            %h2 No tienes notificaciones

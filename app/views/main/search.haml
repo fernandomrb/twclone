@@ -1,0 +1,20 @@
+.search-nav
+    .search-title
+        .container
+            %h4 
+                = @query
+    %ul.navigation
+        .container
+            %li{ class: ("active" unless params[:f]) }
+                %a#tweets-tab{ href: "/search?q=#{ @query }" } Tweets
+            %li{ class: ("active" if params[:f]) }
+                %a#users-tab{ href: "/search?f=users&q=#{ @query }" } Users
+.row
+    .col-md-8.col-md-offset-2
+        - if @show_users.nil?
+            %ul.tweets
+                = render @tweets
+        - else
+            .users.row.top-space
+                = render partial: "/users/user", collection: @users, as: :user
+    

@@ -1,0 +1,5 @@
+.container-fluid.top-space
+	= render @tweet
+	= render "reply_form", parent: @tweet
+	.replies
+		= render @tweets

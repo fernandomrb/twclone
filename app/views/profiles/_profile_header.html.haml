@@ -5,15 +5,15 @@
 		.profile-avatar.thumbnail
 			= image_tag user.avatar
 		.profile-card
-			= link_to profile_user_path(user) do
+			= link_to profile_user_path(user.username) do
 				.fullname
 					%span
 						%strong= user.name
 				%small.username
 					@#{user.username}
-			- if current_page? profile_user_path(user)
+			- if current_page?(profile_user_path(user)) || current_page?( search_path)
 				.bio
-					%p Nonne vides quid sit? Tu es ... Jesse me respice.
+					%p= user.bio
 		.profile-nav
 			%ul.nav.nav-tabs
 				%li.active{ role: "presentation" }
@@ -33,7 +33,7 @@
 						= link_to "#" do
 							%span.tab-value 3
 							%span.tab-label Likes
-			- if current_page? profile_user_path(user)
+			- if current_page?(profile_user_path(user)) || current_page?( search_path)
 				- if current_user == user
 					= link_to edit_user_registration_path, class: "btn btn-default btn-edit" do
 						%i.fa.fa-edit

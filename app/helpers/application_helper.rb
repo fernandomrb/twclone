@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include ConversationsHelper
+
   def resource_name
     :user
   end

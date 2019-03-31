@@ -1,0 +1,6 @@
+%li.user.list-group-item{ data: { username: user.username, "user-id" => user.id } }
+    .user-avatar
+        = image_tag user.avatar
+    .username
+        %strong= user.name
+        %small= user.username

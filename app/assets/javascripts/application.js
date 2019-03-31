@@ -12,12 +12,18 @@
 //
 //= require rails-ujs
 //= require turbolinks
-//= require jquery
+//= require jquery3
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require bootstrap
+//= require tribute
+//= require_tree ./channels
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {
+
+	if (parseInt($("#notification-counter").text()) === 0) {
+		$("#notification-counter").addClass("hide");
+	} 
 
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip()
@@ -46,9 +52,15 @@ $(document).on('turbolinks:load', function() {
 		$(".form-group .pull-right").hide();
 	} 
 
-	function tweetLength() {
-		var maxLength = $(".tweet-area").attr('maxLength');
-		$(".tweet-area").on("input", function(event) {
+	function tweetLength(modal = false) {
+		var tweet_area;
+		if (modal) {
+			tweet_area = $(".modal .tweet-area")
+		} else {
+			tweet_area = $(".tweet-area")
+		}
+		var maxLength = tweet_area.attr('maxLength');
+		 tweet_area.on("input", function(event) {
 			var length = $(this).val().length;
 			var length = maxLength - length;
 			var span = $(".remaining");
@@ -68,15 +80,18 @@ $(document).on('turbolinks:load', function() {
 		}
 	});
 	
-	$("#modal-tweet").on("shown.bs.modal", function() {
-		$(".jumbotron #tweet_body").removeAttr('id', 'tweet_body');
+	$(".modal").on("shown.bs.modal", function() {
+		if(document.querySelector(".tweet-area")) {
+			tweetLength(true);
+			$(".modal-body .tweet-area").attr('rows', '2');
+		}
+	});
+	$(document).on("focus","#tweet_body",function(e){
+		$(this).attr('rows', '3');
+		$(".form-group .pull-right").show();
 		tweetLength();
-		$(".modal-body .tweet-area").attr('rows', '2');
 	});
 
-	$("#modal-tweet").on("hidden.bs.modal", function() {
-		$(".jumbotron .tweet-area").attr('id', 'tweet_body');
-	});
 	$(document).ajaxError(function(event,xhr,options,exc) {
 	    
 	    var errors = JSON.parse(xhr.responseText);
@@ -90,4 +105,59 @@ $(document).on('turbolinks:load', function() {
 	       
 	});
 
+	$("#notification-counter").on("DOMSubtreeModified", function() {
+		toggleCounter(this);
+	});
+	$("#messages-counter").on("DOMSubtreeModified", function() {
+		toggleCounter(this);
+	});
+
+	var toggleCounter = function(ele) {
+		val = ele.innerText;
+		if (parseInt(val) === 0) {
+			ele.classList.add("hide");
+		} else {
+			ele.classList.remove("hide");
+		}
+	};
+
+
+	var tribute = new Tribute({
+		values: function (text, cb) {
+			remoteSearch(text, users => cb(users));
+		},
+		lookup: function (person, mentionText) {
+			return person.name + " <small>@" + person.username + "</small>";
+		},
+		fillAttr: 'username',
+		menuItemTemplate: function (item) {
+			return '<img class ="user-avatar" src="'+item.original.avatar+'">' + item.string; // + '<small>@'+ item.original.username +'</small>';
+		}
+	});
+
+	tribute.attach(document.querySelectorAll('.tweet-area'));
+
+	function remoteSearch(text, cb) {
+		var URL = '/users.json';
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function ()
+		{
+			if (xhr.readyState === 4) {
+				if (xhr.status === 200) {
+					var data = JSON.parse(xhr.responseText);
+					cb(data);
+				} else if (xhr.status === 403) {
+					cb([]);
+				}
+			}
+		};
+		xhr.open("GET", URL + "?term=" + text, true);
+		xhr.send();
+	}
+
+	$(".search-nav .navigation li").on("click", function() {
+		$(this).siblings().removeClass("active");
+		$(this).addClass("active");
+	});
+	
 });

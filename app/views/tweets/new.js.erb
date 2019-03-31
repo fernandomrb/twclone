@@ -1,14 +1,18 @@
-
-<% if @retweet %>
-    $("#modal-tweet .modal-title").text("Quote tweet");
-    $(".modal-body").html("<%= j render "retweet_form" %>");
+<% if @src_tweet %>
+    $(".modal .modal-title").text("Quote tweet");
+    $(".modal-body").html("<%= j render 'retweet_form' %>");
+<% elsif @parent %>
+    $(".modal .modal-title").text("In response to <%= @parent.user.username %>");
+    $(".modal-body").html("<%= j render "tweets/tweet", tweet: @parent %>")
+    $(".modal-body").append("<%= j render "reply_form", parent: @parent %>");
 <% else %>
-    $("#modal-tweet .modal-title").text("New tweet");
+    $(".modal .modal-title").text("New tweet");
     $(".modal-body").html("<%= j render "form" %>");
 <% end %>
 
-$("#modal-tweet").modal("show");
+$(".modal").modal("show");
 
-$('#modal-tweet').on('shown.bs.modal', function () {
+
+$('.modal').on('shown.bs.modal', function () {
   $('.modal-body .tweet-area').focus()
 });

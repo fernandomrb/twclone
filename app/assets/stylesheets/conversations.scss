@@ -1,0 +1,188 @@
+// Place all the styles related to the conversations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.conversations {
+    background: #fff;
+    padding: 1em;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    .header {
+        padding-bottom: 1em;
+        margin-bottom: 2em;
+        border-bottom: 1px solid #eee;
+    }
+}
+.modal {
+    .modal-header > .header, .modal-body > .header {
+        display: flex;
+        justify-content: space-between;
+        .action {
+            a {
+                margin-right: .5em;
+                i {
+                    margin-left: .5em;
+                }
+            }
+        }
+    }
+    ul {
+        padding: 0;
+    }
+
+    .conversation {
+        a {
+            display: block;
+            text-decoration: none;
+            .header {
+                display: flex;
+                justify-content: flex-start;
+                padding-bottom: 1em;
+                margin-bottom: 0;
+                
+            }
+            .message {
+                margin-top: 1em;
+                color: $text_color;
+                font-weight: bold;
+            }
+            .unread-messages-count {
+                position: absolute;
+                right: 1em;
+                bottom: 1em;
+                background: $blue;
+                border-radius: 50%;
+                color: #fff;	
+                line-height: 10px;
+                margin-left: .5em;
+                padding: .4em;
+                font-size: .8em;
+                font-weight: bold;
+
+            }
+        }
+    }
+    .new-conversation {
+        border: none;
+    }
+}
+.user-avatar, .username {
+    display: inline-block;
+}
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    margin-right: 1em;
+    img {
+        width: 100%;
+        border-radius: 10%;
+    }
+}
+.username {
+    color: $text_color;
+}
+.PM_conversation, .PM_composer {
+    background: #fff;
+    padding: 1em;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+.PM_conversation {
+    border-top: 1px solid #eee;
+    border-radius: 5px 5px 0 0;
+    .header {
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1em;
+        a { 
+            text-decoration: none;
+            display: block;
+            margin: 0 auto;
+            p {
+                margin: 0;
+            }
+        }
+        .action {
+            position: relative;
+            right: 0;
+            a {
+                display: block;
+                color: black;
+                margin-top: 1em;
+                &:hover {
+                    color: red;
+                }
+                i {
+                    font-size: 1em;
+                }
+            }
+        }
+        
+    }
+    .PM_conversation_container {
+        padding: 1em 0 1em 0;
+        height: 400px;
+        overflow: hidden;
+        overflow-y: auto;
+        .PM_container {
+            position: relative;
+            height: 50px;
+            .right, .left {
+                padding: .5em 1em;
+                position: absolute;
+                p {
+                    margin: 0;
+                }
+            }
+            .right {
+                background: $blue;
+                color: #fff;
+                right: 0;
+                border-radius: 15px 15px 0 15px;
+            }
+            .left {
+                background: #e6ecf0;
+                left: 0;
+                border-radius: 15px 15px 15px 0;
+            }
+        }
+    }
+
+}
+
+.PM_composer {
+    border-bottom: 1px solid #eee;
+    border-radius: 0 0 5px 5px;
+    form {
+        display: flex;
+        justify-content: flex-start;
+        div:nth-child(2) {
+            flex-grow: 1;
+            margin-right: .5em;
+        }
+    }
+}
+
+.new-conversation {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 1em;
+    position: relative;
+    form {
+        .form-group:nth-child(4) {
+            position: absolute;
+            bottom: 0;
+            right: 1em;
+            margin-top: 1em;
+        }
+    }
+    ul {
+        padding: 0;
+        margin-bottom: 3em;
+        li {
+            cursor: pointer;
+        }
+    }
+}

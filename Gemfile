@@ -27,14 +27,14 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'devise', :git => 'https://github.com/plataformatec/devise'
 gem 'haml', '~> 5.0', '>= 5.0.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
@@ -42,6 +42,9 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 gem 'carrierwave', '~> 1.1'
 gem 'mini_magick'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'pg_search', '~> 2.1', '>= 2.1.4'
+gem 'tribute', '~> 3.6'
+gem 'searchkick', '~> 3.1', '>= 3.1.2'
 
 
 group :development, :test do
@@ -52,8 +55,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.6'
   gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
-  gem 'factory_girl_rails', '~> 4.8'
-  #gem 'capybara-webkit', :git => "https://github.com/thoughtbot/capybara-webkit"
+  gem 'factory_bot_rails', '~> 4.11', '>= 4.11.1'
 end
 
 group :test do
