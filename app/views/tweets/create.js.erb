@@ -2,9 +2,6 @@ if($(".modal").is(':visible')) {
 	$(".modal").modal("toggle"); 
 }
 <% if @tweet.persisted? %>
-		if($("#modal-tweet").is(':visible')) {
-			$("#modal-tweet").modal("toggle");
-		}
     <% if @tweet.parent_id.nil? %>
         $(".new-tweet .tweet-area").val("");
     <% else %>
