@@ -1,6 +1,7 @@
 class Tweet < ApplicationRecord
 	after_save :notify_mentioned_users
-
+	after_commit { TweetBroadcastJob.perform_later(self) }
+	
 	searchkick text_start: [:body]
 	belongs_to :user
 	belongs_to :parent, class_name: "Tweet", optional: true

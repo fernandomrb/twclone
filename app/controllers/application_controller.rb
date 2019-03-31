@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
 
 	include ConversationsHelper
 
+	def self.renderer_with_signed_in_user(user)
+    ActionController::Renderer::RACK_KEY_TRANSLATION['warden'] ||= 'warden'
+    proxy = Warden::Proxy.new({}, Warden::Manager.new({})).tap { |i|
+      i.set_user(user, scope: :user, store: false, run_callbacks: false)
+    }
+    renderer.new('warden' => proxy)
+  end
+
   protected
 
 	  def configure_permitted_parameters
@@ -24,4 +32,5 @@ class ApplicationController < ActionController::Base
 		def not_found
 			raise ActionController::RoutingError.new('Not Found')
 		end
+
 end

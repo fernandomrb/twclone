@@ -135,4 +135,8 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:body, :parent, :quote, :src_tweet)
     end
+
+    def trigger_tweet_to_followers(tweet)
+      
+    end
 end
