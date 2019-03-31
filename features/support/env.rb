@@ -10,7 +10,21 @@ require 'cucumber/rails'
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
 # Capybara.default_selector = :xpath
-
+Capybara.register_driver :selenium do |app|
+  profile = Selenium::WebDriver::Firefox::Profile.new
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.read_timeout = 120 # instead of the default 60
+  Capybara::Selenium::Driver.new(app, browser: :firefox, profile: profile, http_client: client)
+end
+# Capybara.register_driver :chrome do |app|  
+# 	Capybara::Selenium::Driver.new(app, browser: :chrome)
+# end
+# Capybara.javascript_driver = :chrome
+# 	Capybara.configure do |config|  
+# 	config.default_max_wait_time = 120 # seconds
+# 	config.default_driver        = :selenium
+# end
+#Capybara.javascript_driver = :webkit
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
 # your application behaves in the production environment, where an error page will

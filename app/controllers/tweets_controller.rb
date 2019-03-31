@@ -33,7 +33,7 @@ class TweetsController < ApplicationController
       else
         format.json { render json: @tweet.errors.full_messages, 
                            status: :unprocessable_entity }
-        format.js { flash.now[:info] = "Your reply could not be send." }
+        format.js
       end
     end
 
@@ -83,6 +83,7 @@ class TweetsController < ApplicationController
       if @tweet.update(tweet_params)
         format.json { head :no_content }
         format.js
+        format.html { redirect_to tweets_url, notice: "Your tweet has been updated." }
       else
         format.json { render json: @tweet.errors.full_messages, 
                             status: :unprocessable_entity }
@@ -123,6 +124,7 @@ class TweetsController < ApplicationController
       respond_to do |format|
         format.json { head :no_content }
         format.js
+        format.html { redirect_to tweets_url, notice: "Your tweet has been deleted." }
       end
     end
   end
