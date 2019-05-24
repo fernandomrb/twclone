@@ -10,8 +10,8 @@
                         = user.name
                         %small= "@#{ user.username }"
             .message
-                = "#{ conversation.personal_messages.first.user == user ? user.name : 'You' }:"
-                %small= conversation.personal_messages.first.body
+                = "#{ conversation.personal_messages.last.user == user ? user.name : 'You' }:"
+                %small= conversation.personal_messages.last.body
             - if conversation.personal_messages.unread(current_user).any?    
                 .pull-right
                     %span.unread-messages-count

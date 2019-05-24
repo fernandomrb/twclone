@@ -10,7 +10,4 @@ class TweetBroadcastJob < ApplicationJob
     end
   end
 
-  def render_tweet(tweet)
-    
-  end
 end

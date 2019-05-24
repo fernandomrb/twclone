@@ -33,7 +33,7 @@
 						= link_to "#" do
 							%span.tab-value 3
 							%span.tab-label Likes
-			- if current_page?(profile_user_path(user)) || current_page?( search_path)
+			- if current_page?(profile_user_path(user.username)) || current_page?( search_path)
 				- if current_user == user
 					= link_to edit_user_registration_path, class: "btn btn-default btn-edit" do
 						%i.fa.fa-edit

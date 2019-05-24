@@ -6,4 +6,11 @@ class Conversation < ApplicationRecord
     scope :participates, -> (user) { where(author: user).or(where(receiver: user)) }
     scope :between, -> (author, receiver) { where(author: author, receiver: receiver).or(where(author: receiver, receiver: author)) }
 
+    def opposed_user(user)
+        user == author ? receiver : author
+    end
+
+    def participates?(user)
+        author == user || receiver == user
+    end
 end

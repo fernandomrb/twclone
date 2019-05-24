@@ -9,12 +9,14 @@
         .action
             = link_to conversation_path(conversation), method: :delete, data: { confirm: "Are you sure?" } do
                 %i.fa.fa-trash
-    .PM_conversation_container
+    .PM_conversation_container{ "data-conversation-id": conversation.id }
         = render partial: "personal_message", collection: conversation.personal_messages, as: :personal_message || "There are no messages."
 .PM_composer
-    = form_for [conversation, personal_message], html: { multipart: true }, remote: true do |f|
+    = form_for [conversation, personal_message] do |f|
+
         .form-group
-            = f.text_area :body, class: "form-control", rows: 1
+            = f.hidden_field "conversation_id", value: conversation.id
+            = f.text_area :body, class: "form-control", rows: 1, required: true
         .form-group
             .pull-right
-                = f.submit "send", class: "btn btn-primary"
+                = f.submit "send", id: "send_message", class: "btn btn-primary"
