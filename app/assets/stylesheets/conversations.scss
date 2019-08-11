@@ -186,3 +186,18 @@
         }
     }
 }
+
+.back-btn {
+    position: relative; 
+    left: 0;
+    display: block;
+    color: $text_color;
+    margin: 1em 0 0 0 !important;
+    &:hover {
+        color: black;
+    }
+    i {
+        font-size: 1.5em;
+    }
+
+}

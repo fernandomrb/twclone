@@ -16,7 +16,8 @@
 					%p= user.bio
 		.profile-nav
 			%ul.nav.nav-tabs
-				%li.active{ role: "presentation" }
+			
+				%li{ role: "presentation", class: current_page?(profile_user_path(user))? "Active" : "" }
 					= link_to "#" do 
 						%span.tab-value= user.tweets.size
 						%span.tab-label Tweets

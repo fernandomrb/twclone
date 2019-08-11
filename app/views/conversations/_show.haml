@@ -1,6 +1,8 @@
 .PM_conversation.top-space
     - user = participating_user(conversation)
     .header
+        = link_to conversations_path, remote: true, class: "back-btn" do
+            %i.fa.fa-angle-left
         = link_to profile_user_path(user) do
             .user-avatar
                 = image_tag user.avatar
