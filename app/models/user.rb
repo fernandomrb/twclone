@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  include PgSearch
+  include PgSearch::Model
   searchkick text_start: [:name, :username]
 
   pg_search_scope :search_by_name_and_username, against: [:name, :username], 

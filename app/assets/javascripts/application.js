@@ -23,6 +23,9 @@ $(document).on('turbolinks:load', function() {
 
 	if (parseInt($("#notification-counter").text()) === 0) {
 		$("#notification-counter").addClass("hide");
+	}
+	if (parseInt($("#messages-counter").text()) === 0) {
+		$("#messages-counter").addClass("hide");
 	} 
 
 	$(function () {
