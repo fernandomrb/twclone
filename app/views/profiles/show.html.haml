@@ -19,3 +19,8 @@
 			.profile-tweets.col-sm-7.col-md-6.col-sm-offset-1
 				= render @tweets
 
+			.users.col-sm-8.col-md-9.col-sm-offset-1.hidden
+				- if @following
+					= render @following
+				- elsif @followers
+					= render @followers

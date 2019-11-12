@@ -1,0 +1,7 @@
+$(".users").html("<%= j render @followers %>");
+$(".users").removeClass("hidden");
+$(".profile-tweets").html("");
+$(".profile-tweets").addClass("hidden");
+$("#nav-followers").addClass("active");
+$("#nav-following").removeClass("active");
+$("#nav-tweets").removeClass("active");

@@ -11,30 +11,26 @@
 						%strong= user.name
 				%small.username
 					@#{user.username}
-			- if current_page?(profile_user_path(user)) || current_page?( search_path)
+			- unless current_page?(root_path)
 				.bio
 					%p= user.bio
 		.profile-nav
-			%ul.nav.nav-tabs
-			
-				%li{ role: "presentation", class: current_page?(profile_user_path(user))? "Active" : "" }
-					= link_to "#" do 
-						%span.tab-value= user.tweets.size
-						%span.tab-label Tweets
-				%li{ role: "presentation" } 
-					= link_to "#" do
-						%span.tab-value= user.following.size
-						%span.tab-label Following
-				%li{ role: "presentation" } 
-					= link_to "#" do
-						%span.tab-value= user.followers.size
-						%span.tab-label Followers
-				- if current_page? profile_user_path(user)
-					%li{ role: "presentation" }
-						= link_to "#" do
-							%span.tab-value 3
-							%span.tab-label Likes
-			- if current_page?(profile_user_path(user.username)) || current_page?( search_path)
+			- if current_page?(root_path) || user.username == params[:username]
+				%ul.nav.nav-tabs
+				
+					%li.nav-items
+						= link_to profile_user_path(user.username), class: "nav-link active", id: "nav-tweets", remote: true do 
+							%span.tab-value= user.tweets.size
+							%span.tab-label Tweets
+					%li.nav-items
+						= link_to user_following_path(user.username), class: "nav-link", id: "nav-following", remote: true do
+							%span.tab-value= user.following.size
+							%span.tab-label Following
+					%li.nav-items
+						= link_to user_followers_path(user.username), class: "nav-link", id: "nav-followers", remote: true do
+							%span.tab-value= user.followers.size
+							%span.tab-label Followers
+			- unless current_page?(root_path) #|| current_page?( search_path) 
 				- if current_user == user
 					= link_to edit_user_registration_path, class: "btn btn-default btn-edit" do
 						%i.fa.fa-edit

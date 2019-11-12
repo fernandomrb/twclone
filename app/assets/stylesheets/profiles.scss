@@ -2,7 +2,7 @@ $blue: #1DA1F2;
 
 .profile-page {
 	margin-bottom: 2em;
-	.profile-header {
+	& > .profile-header {
 		width: 100vw;
 		position: relative;
 		left: calc(-1*(100vw - 100%) / 2);
@@ -103,6 +103,14 @@ $blue: #1DA1F2;
 		}
 	}
 }
+.users {
+	.bio { 
+		display: none;
+	}
+	.profile-nav .nav-tabs {
+		display: none !important;
+	}
+}
 
 @media screen and (min-width: 768px) {
 	.container .row .profile-header, .profile-page .profile-header {
@@ -155,7 +163,7 @@ $blue: #1DA1F2;
 		}
 	}
 	.profile-page {
-		.profile-header {
+		& > .profile-header {
 			.bar {
 				min-height: 65px;
 				flex-direction: row;
@@ -191,6 +199,7 @@ $blue: #1DA1F2;
 								display: block;
 							}
 							a {
+								border-bottom: 3px solid transparent;
 								&:hover {
 									border-bottom: 3px solid $blue;
 									transition: all .2s linear;
@@ -201,7 +210,7 @@ $blue: #1DA1F2;
 								}
 							}
 						}
-						.active > a{
+						.active {
 							border-bottom: 3px solid $blue;
 							.tab-value {
 								color: $blue;

@@ -1,6 +1,6 @@
 .header
   .account
-    = link_to profile_user_path(tweet.user) do
+    = link_to profile_user_path(tweet.user.username) do
       .user-avatar
         = image_tag tweet.user.avatar
       .text

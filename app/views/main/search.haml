@@ -13,8 +13,18 @@
     .col-md-8.col-md-offset-2
         - if @show_users.nil?
             %ul.tweets
-                = render @tweets
+                - if @tweets.any?
+                    = render @tweets
+                - else
+                    .text-center
+                        %h1 No results.
+                        %p No results found for that search.
         - else
             .users.row.top-space
-                = render partial: "/users/user", collection: @users, as: :user
+                - if @users.any?
+                    = render partial: "/users/user", collection: @users, as: :user
+                - else
+                    .text-center
+                        %h1 No results.
+                        %p No person found for that search.
     

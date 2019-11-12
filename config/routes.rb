@@ -35,4 +35,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => "/cable"
 
   get "/users/:username", to: "profiles#show", as: :profile_user, constraint: { username: /[\w]+/ }
+  get "/users/:username/following", to: "profiles#following", as: :user_following, constraint: { username: /[\w]+/ }
+  get "/users/:username/followers", to: "profiles#followers", as: :user_followers, constraint: { username: /[\w]+/ }
+
 end
